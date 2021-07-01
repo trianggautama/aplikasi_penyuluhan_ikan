@@ -28,12 +28,14 @@
               <div class="col-lg-12">
                 <div class="login-form">
                   <div class="text-center">
+                    <img src="{{asset('logo.png')}}" alt="" width="70px">
+                    <br>
                     <h1 class="h4 text-gray-900 mb-4">Login</h1>
                   </div>
                   <form class="user">
                     <div class="form-group">
                       <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
-                        placeholder="Enter Email Address">
+                        placeholder="Username">
                     </div>
                     <div class="form-group">
                       <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password">
