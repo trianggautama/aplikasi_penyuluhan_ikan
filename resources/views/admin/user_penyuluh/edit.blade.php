@@ -49,13 +49,13 @@
                                 <div class="col-md">
                                     <div class="custom-control custom-radio">
                                         <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio1">First Radio</label>
+                                        <label class="custom-control-label" for="customRadio1">laki laki</label>
                                     </div>
                                 </div>
                                 <div class="col-md">
                                     <div class="custom-control custom-radio">
                                         <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio2">Second Radio</label>
+                                        <label class="custom-control-label" for="customRadio2">Perempuan</label>
                                     </div>
                                 </div>
                             </div>
@@ -70,6 +70,14 @@
                                 <select name="kecamatan_id" id="" class="form-control">
                                     <option value="">- pilih pendidikan terakhir -</option>
                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">username</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Password</label>
+                                <input type="text" class="form-control">
                             </div>
                     </div>
                     <div class="card-footer text-right">
