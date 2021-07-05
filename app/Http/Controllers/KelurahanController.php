@@ -2,20 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kecamatan;
+use App\Models\Kelurahan;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class KelurahanController extends Controller
 {
     /**
-     * Display a listing of the resource. 
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-
-        return view('admin.kelurahan.index');
-    } 
+        $data = Kelurahan::all();
+        $kecamatan = Kecamatan::all();
+        return view('admin.kelurahan.index', compact('data', 'kecamatan'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -35,7 +39,9 @@ class KelurahanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Kelurahan::create($request->all());
+
+        return back()->withSuccess('Data berhasil disimpan');
     }
 
     /**
@@ -55,31 +61,43 @@ class KelurahanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Kelurahan $kelurahan)
     {
-        return view('admin.kelurahan.edit');
+        $kecamatan = Kecamatan::all();
+
+        return view('admin.kelurahan.edit', compact('kelurahan', 'kecamatan'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  Kelurahan $kelurahan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Kelurahan $kelurahan)
     {
-        //
+        $kelurahan->update($request->all());
+
+        return redirect()->route('userAdmin.kelurahan.index')->withSuccess('Data berhasil diubah');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  Kelurahan $kelurahan
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Kelurahan $kelurahan)
     {
-        //
+        try {
+            $kelurahan->delete();
+            return back()->withSuccess('Data berhasil dihapus');
+        } catch (QueryException $e) {
+
+            if ($e->getCode() == "23000") {
+                return back()->withError('Data gagal dihapus');
+            }
+        }
     }
 }
