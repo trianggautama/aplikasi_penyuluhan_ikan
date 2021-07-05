@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jabatan;
+use App\Models\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PenyuluhController extends Controller
 {
@@ -13,7 +17,9 @@ class PenyuluhController extends Controller
      */
     public function index()
     {
-        return view('admin.user_penyuluh.index');
+        $data = User::whereRole(2)->get();
+        $jabatan = Jabatan::all();
+        return view('admin.user_penyuluh.index', compact('data', 'jabatan'));
     }
 
     /**
@@ -34,7 +40,16 @@ class PenyuluhController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $userRequest = $request->only('username', 'nama', 'role', 'status');
+        $userRequest['password'] = Hash::make($request->password);
+
+        $user = User::create($userRequest);
+
+        $penyuluhRequest = $request->except('password', 'username', 'nama', 'role', 'status');
+
+        $user->penyuluh()->create($penyuluhRequest);
+
+        return back()->withSuccess('Data berhasil disimpan');
     }
 
     /**
@@ -54,31 +69,55 @@ class PenyuluhController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $penyuluh)
     {
-        return view('admin.user_penyuluh.edit');
+        $user = $penyuluh;
+        $jabatan = Jabatan::all();
+
+        return view('admin.user_penyuluh.edit', compact('user', 'jabatan'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $penyuluh)
     {
-        //
+        $user = $penyuluh;
+
+        $userRequest = $request->only('username', 'nama', 'role', 'status');
+        if (isset($request->password)) {
+            $userRequest['password'] = Hash::make($request->password);
+        }
+
+        $user->update($userRequest);
+
+        $penyuluhRequest = $request->except('_method', '_token', 'password', 'username', 'nama', 'role', 'status');
+
+        $user->penyuluh()->update($penyuluhRequest);
+
+        return redirect()->route('userAdmin.penyuluh.index')->withSuccess('Data berhasil diubah');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  User $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        try {
+            $user->delete();
+            return back()->withSuccess('Data berhasil dihapus');
+        } catch (QueryException $e) {
+
+            if ($e->getCode() == "23000") {
+                return back()->withError('Data gagal dihapus');
+            }
+        }
     }
 }

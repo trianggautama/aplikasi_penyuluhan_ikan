@@ -2,42 +2,27 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Penyuluh;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded = [''];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * Get the penyuluh associated with the User
      *
-     * @var array
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    public function penyuluh(): HasOne
+    {
+        return $this->hasOne(Penyuluh::class);
+    }
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
 }
