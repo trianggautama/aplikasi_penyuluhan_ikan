@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="{{asset('admin/img/logo/logo.png')}}" rel="icon">
-  <title>RuangAdmin - Dashboard</title>
+  <title>Aplikasi Penyuluhan Ikan</title>
   <link href="{{asset('admin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('admin/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('admin/css/ruang-admin.min.css')}}" rel="stylesheet">
@@ -21,13 +21,13 @@
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar"> 
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
-          <img src="{{asset('admin/img/logo/logo2.png')}}">
+          <img src="{{asset('logo.png')}}">
         </div>
-        <div class="sidebar-brand-text mx-3">RuangAdmin</div>
+        <div class="sidebar-brand-text mx-3">Penyuluhan Ikan</div>
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{Route('userAdmin.beranda')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Beranda</span></a>
       </li>
@@ -76,8 +76,8 @@
         <div id="collapsePage" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Kegiatan Penyuluhan</h6>
-            <a class="collapse-item" href="login.html">Agenda</a>
-            <a class="collapse-item" href="register.html">Peserta</a>
+            <a class="collapse-item" href="{{Route('userAdmin.penyuluhan.index')}}">Agenda</a>
+            <a class="collapse-item" href="{{Route('userAdmin.peserta.index')}}">Peserta</a>
           </div>
         </div>
       </li>

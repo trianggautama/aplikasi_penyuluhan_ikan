@@ -20,6 +20,8 @@ Route::prefix('/user-admin')->name('userAdmin.')->group(function (){
     Route::resource('kelurahan', '\App\Http\Controllers\KelurahanController');
     Route::resource('jabatan', '\App\Http\Controllers\JabatanController');
     Route::resource('penyuluh', '\App\Http\Controllers\PenyuluhController');
+    Route::resource('penyuluhan', '\App\Http\Controllers\PenyuluhanController');
+    Route::resource('peserta', '\App\Http\Controllers\PesertaController');
 });
 
 Route::prefix('/user-penyuluh')->name('userPenyuluh.')->group(function (){
