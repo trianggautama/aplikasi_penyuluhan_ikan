@@ -15,33 +15,38 @@
                 <div class="card-header">
                     form edit
                 </div>
-                <form action="{{Route('userAdmin.penyuluhan.update',1)}}" method="POST">
-                    @csrf
-                    @method('put')
+                <form action="{{Route('userAdmin.penyuluhan.update',$data->id)}}" enctype="multipart/form-data"
+                    method="POST">
                     <div class="card-body">
+                        @csrf
+                        @method('put')
                         <div class="form-group">
                             <label for="">Nama Pelatihan</label>
-                            <input type="text" name="kode_kecamatan" class="form-control" required>
+                            <input type="text" name="nama_penyuluhan" value="{{$data->nama_penyuluhan}}"
+                                class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="">Keterangan</label>
-                            <input type="text" name="nama_kecamatan" class="form-control" required>
+                            <input value="{{$data->keterangan}}" type="text" name="keterangan" class="form-control"
+                                required>
                         </div>
                         <div class="form-group">
-                            <label for="">Payuluh</label>
-                            <select name="" id="" class="form-control">
+                            <label for="">Penyuluh</label>
+                            <select name="penyuluh_id" id="" class="form-control" required>
                                 <option value="">- pilih penyuluh -</option>
                                 @foreach($penyuluh as $p)
-                                    <option value="{{$p->id}}">{{$p->user->nama}}</option>
+                                <option value="{{$p->id}}" {{$p->id == $data->penyuluh_id ? 'selected' : ''}}>
+                                    {{$p->user->nama}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="">Kelurahan</label>
-                            <select name="" id="" class="form-control">
+                            <select name="kelurahan_id" id="" class="form-control" required>
                                 <option value="">- pilih kelurahan -</option>
                                 @foreach($kelurahan as $k)
-                                    <option value="{{$p->id}}">{{$k->nama_kelurahan}}</option>
+                                <option value="{{$p->id}}" {{$p->id == $data->kelurahan_id ? 'selected' : ''}}>
+                                    {{$k->nama_kelurahan}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -49,28 +54,30 @@
                             <div class="col-md">
                                 <div class="form-group">
                                     <label for="">Tanggal Mulai</label>
-                                    <input type="date" name="kode_kecamatan" class="form-control" required>
+                                    <input name="tgl_mulai" value="{{$data->tgl_mulai}}" type="date"
+                                        class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-md">
                                 <div class="form-group">
                                     <label for="">Tanggal Selesai</label>
-                                    <input type="date" name="kode_kecamatan" class="form-control" required>
+                                    <input value="{{$data->tgl_selesai}}" type="date" name="tgl_selesai"
+                                        class="form-control" required>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="">Tempat Pelatihan</label>
-                            <input type="text" name="" class="form-control" required>
+                            <input value="{{$data->tempat_pelatihan}}" type="text" name="tempat_pelatihan"
+                                class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="">Lampiran</label>
-                            <input type="file" name="nama_kecamatan" class="form-control" required>
+                            <input type="file" name="lampiran" class="form-control">
                         </div>
                     </div>
-                    <div class="card-footer text-right">
-                        <a href="{{Route('userAdmin.penyuluhan.index')}}" class="btn btn-outline-primary"
-                            data-dismiss="modal">Kembali</a>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-primary">Simpan Data</button>
                     </div>
                 </form>

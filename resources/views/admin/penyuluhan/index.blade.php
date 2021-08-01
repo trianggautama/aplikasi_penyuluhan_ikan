@@ -32,27 +32,30 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($data as $d)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Penyuluhan Ikan air tawar</td>
-                                    <td>Penyuluh 1</td>
-                                    <td>Kelurahan 1</td>
-                                    <td>1 Juni - 5 Juni 2021</td>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{$d->nama_penyuluhan}}</td>
+                                    <td>{{$d->penyuluh->user->nama}}</td>
+                                    <td>{{$d->kelurahan->nama_kelurahan}}</td>
+                                    <td>{{carbon\carbon::parse($d->tgl_mulai)->translatedFormat('d F Y')}} -
+                                        {{carbon\carbon::parse($d->tgl_selesai)->translatedFormat('d F Y')}}</td>
                                     <td>
-                                        <form action="{{ route('userAdmin.penyuluhan.destroy',1) }}" method="POST">
+                                        <form action="{{ route('userAdmin.penyuluhan.destroy',$d->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <a class="btn btn-sm btn-info"
-                                                href="{{Route('userAdmin.penyuluhan.show',1)}}"><i
+                                                href="{{Route('userAdmin.penyuluhan.show',$d->id)}}"><i
                                                     class="fa fa-info-circle"></i>&nbsp;Show</a>
                                             <a class="btn btn-sm btn-warning"
-                                                href="{{Route('userAdmin.penyuluhan.edit',1)}}"><i
+                                                href="{{Route('userAdmin.penyuluhan.edit',$d->id)}}"><i
                                                     class="fa fa-edit"></i>&nbsp;Edit</a>
                                             <button class="btn btn-sm btn-danger " type="submit"><i class="fa fa-trash"
                                                     onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"></i>&nbsp;Hapus</button>
                                         </form>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -67,38 +70,38 @@
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header"> 
+            <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{Route('userAdmin.penyuluhan.store')}}" method="POST">
+            <form action="{{Route('userAdmin.penyuluhan.store')}}" enctype="multipart/form-data" method="POST">
                 <div class="modal-body">
                     @csrf
                     <div class="form-group">
                         <label for="">Nama Pelatihan</label>
-                        <input type="text" name="kode_kecamatan" class="form-control" required>
+                        <input type="text" name="nama_penyuluhan" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="">Keterangan</label>
-                        <input type="text" name="nama_kecamatan" class="form-control" required>
+                        <input type="text" name="keterangan" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="">Payuluh</label>
-                        <select name="" id="" class="form-control">
+                        <label for="">Penyuluh</label>
+                        <select name="penyuluh_id" id="" class="form-control" required>
                             <option value="">- pilih penyuluh -</option>
                             @foreach($penyuluh as $p)
-                                <option value="{{$p->id}}">{{$p->user->nama}}</option>
+                            <option value="{{$p->id}}">{{$p->user->nama}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="">Kelurahan</label>
-                        <select name="" id="" class="form-control">
+                        <select name="kelurahan_id" id="" class="form-control" required>
                             <option value="">- pilih kelurahan -</option>
                             @foreach($kelurahan as $k)
-                                <option value="{{$p->id}}">{{$k->nama_kelurahan}}</option>
+                            <option value="{{$p->id}}">{{$k->nama_kelurahan}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -106,23 +109,23 @@
                         <div class="col-md">
                             <div class="form-group">
                                 <label for="">Tanggal Mulai</label>
-                                <input type="date" name="kode_kecamatan" class="form-control" required>
+                                <input name="tgl_mulai" type="date" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-group">
                                 <label for="">Tanggal Selesai</label>
-                                <input type="date" name="kode_kecamatan" class="form-control" required>
+                                <input type="date" name="tgl_selesai" class="form-control" required>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="">Tempat Pelatihan</label>
-                        <input type="text" name="" class="form-control" required>
+                        <input type="text" name="tempat_pelatihan" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="">Lampiran</label>
-                        <input type="file" name="nama_kecamatan" class="form-control" required>
+                        <input type="file" name="lampiran" class="form-control" required>
                     </div>
                 </div>
                 <div class="modal-footer">

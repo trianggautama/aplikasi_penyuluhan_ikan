@@ -1,20 +1,21 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{
-    MainController,AuthController
-};
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MainController;use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
+})->name('welcome');
+
+Route::prefix('/auth')->name('auth.')->group(function () {
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
-Route::prefix('/auth')->name('auth.')->group(function (){
-    Route::get('/login', [AuthController::class, 'login'])->name('login'); 
-});
-
-Route::prefix('/user-admin')->name('userAdmin.')->group(function (){
-    Route::get('/beranda', [MainController::class, 'admin_beranda'])->name('beranda'); 
+Route::prefix('/user-admin')->name('userAdmin.')->group(function () {
+    Route::get('/beranda', [MainController::class, 'admin_beranda'])->name('beranda');
 
     Route::resource('kecamatan', '\App\Http\Controllers\KecamatanController');
     Route::resource('kelurahan', '\App\Http\Controllers\KelurahanController');
@@ -24,6 +25,6 @@ Route::prefix('/user-admin')->name('userAdmin.')->group(function (){
     Route::resource('peserta', '\App\Http\Controllers\PesertaController');
 });
 
-Route::prefix('/user-penyuluh')->name('userPenyuluh.')->group(function (){
-    Route::get('/beranda', [MainController::class, 'penyuluh_beranda'])->name('beranda'); 
+Route::prefix('/user-penyuluh')->name('userPenyuluh.')->group(function () {
+    Route::get('/beranda', [MainController::class, 'penyuluh_beranda'])->name('beranda');
 });
