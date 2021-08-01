@@ -15,35 +15,42 @@
                 <div class="card-header">
                     form edit
                 </div>
-                <form action="{{Route('userAdmin.penyuluhan.update',1)}}" method="POST">
-                    @csrf
-                    @method('put')
+                <form action="{{Route('userAdmin.peserta.update',$data->id)}}" enctype="multipart/form-data"
+                    method="POST">
                     <div class="card-body">
+                        @csrf
+                        @method('put')
                         <div class="form-group">
                             <label for="">Pelatihan</label>
-                            <select name="" id="" class="form-control">
-                                <option value="" >- pilih pelatihan -</option>
+                            <select name="penyuluhan_id" id="" class="form-control" required>
+                                <option value="">- pilih pelatihan -</option>
+                                @foreach ($penyuluhan as $d)
+                                <option value="{{$d->id}}" {{$d->id == $data->penyuluhan_id ? 'selected' : ''}}>
+                                    {{$d->nama_penyuluhan}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="">Nik</label>
-                            <input type="text" name="kode_kecamatan" class="form-control" required>
+                            <input value="{{$data->nik}}" type="text" name="nik" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="">Nama</label>
-                            <input type="text" name="nama_kecamatan" class="form-control" required>
+                            <input value="{{$data->nama}}" type="text" name="nama" class="form-control" required>
                         </div>
                         <div class="row">
                             <div class="col-md">
                                 <div class="form-group">
                                     <label for="">Tempat lahir</label>
-                                    <input type="text" name="kode_kecamatan" class="form-control" required>
+                                    <input value="{{$data->tempat_lahir}}" type="text" name="tempat_lahir"
+                                        class="form-control" required>
                                 </div>
                             </div>
-                            <div class="col-md"> 
+                            <div class="col-md">
                                 <div class="form-group">
                                     <label for="">Tanggal lahir</label>
-                                    <input type="date" name="kode_kecamatan" class="form-control" required>
+                                    <input value="{{$data->tanggal_lahir}}" type="date" name="tanggal_lahir"
+                                        class="form-control" required>
                                 </div>
                             </div>
                         </div>
@@ -51,14 +58,16 @@
                         <div class="row mb-2">
                             <div class="col-md">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio1" name="jk" value="Laki-laki"
-                                        class="custom-control-input" checked>
+                                    <input type="radio" id="customRadio1" name="jenis_kelamin" value="Laki-laki"
+                                        class="custom-control-input"
+                                        {{$data->jenis_kelamin == 'Laki-laki' ? 'checked' : ''}}>
                                     <label class="custom-control-label" for="customRadio1">Laki-laki</label>
                                 </div>
                             </div>
                             <div class="col-md">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" id="customRadio2" name="jk" value="Perempuan"
+                                    <input type="radio" id="customRadio2" name="jenis_kelamin" value="Perempuan"
+                                        {{$data->jenis_kelamin == 'Perempuan' ? 'checked' : ''}}
                                         class="custom-control-input">
                                     <label class="custom-control-label" for="customRadio2">Perempuan</label>
                                 </div>
@@ -66,12 +75,11 @@
                         </div>
                         <div class="form-group">
                             <label for="">Foto</label>
-                            <input type="file" name="nama_kecamatan" class="form-control" required>
+                            <input type="file" name="foto" class="form-control">
                         </div>
                     </div>
-                    <div class="card-footer text-right">
-                        <a href="{{Route('userAdmin.peserta.index')}}" class="btn btn-outline-primary"
-                            data-dismiss="modal">Kembali</a>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-primary">Simpan Data</button>
                     </div>
                 </form>

@@ -21,44 +21,46 @@
         <div class="col-md">
             <div class="card">
                 <div class="card-header">
-                   <div class="row">
+                    <div class="row">
                         <div class="col-md">
                             Detail Biodata
                         </div>
                         <div class="col-md text-right">
-                            <a href="{{Route('userAdmin.peserta.index')}}" class="btn btn-sm btn-secondary"><i class="fa fa-arrow-left"></i> kembali</a>
+                            <a href="{{Route('userAdmin.peserta.index')}}" class="btn btn-sm btn-secondary"><i
+                                    class="fa fa-arrow-left"></i> kembali</a>
                         </div>
-                   </div>
-                </div>
-                    <div class="card-body">
-                        <table class="table table-striped">
-                            <tr>
-                                <td width="24%">Nama Pelatihan</td>
-                                <td width="2%">:</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td width="24%">NIK</td>
-                                <td width="2%">:</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td width="24%">Nama</td>
-                                <td width="2%">:</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td width="24%">Tempat, tanggal lahir</td>
-                                <td width="2%">:</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td width="24%">Jenis kelamin</td>
-                                <td width="2%">:</td>
-                                <td></td>
-                            </tr>
-                        </table>
                     </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <td width="24%">Nama Pelatihan</td>
+                            <td width="2%">:</td>
+                            <td>{{$data->penyuluhan->nama_penyuluhan}}</td>
+                        </tr>
+                        <tr>
+                            <td width="24%">NIK</td>
+                            <td width="2%">:</td>
+                            <td>{{$data->nik}}</td>
+                        </tr>
+                        <tr>
+                            <td width="24%">Nama</td>
+                            <td width="2%">:</td>
+                            <td>{{$data->nama}}</td>
+                        </tr>
+                        <tr>
+                            <td width="24%">Tempat, tanggal lahir</td>
+                            <td width="2%">:</td>
+                            <td>{{$data->tempat_lahir}},
+                                {{carbon\carbon::parse($data->tanggal_lahir)->translatedFormat('d F Y')}}</td>
+                        </tr>
+                        <tr>
+                            <td width="24%">Jenis kelamin</td>
+                            <td width="2%">:</td>
+                            <td>{{$data->jenis_kelamin}}</td>
+                        </tr>
+                    </table>
+                </div>
                 </form>
             </div>
         </div>

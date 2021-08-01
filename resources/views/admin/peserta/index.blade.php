@@ -33,28 +33,32 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($data as $d)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Pelatihan 1</td>
-                                    <td>1215376253</td>
-                                    <td>Peserta 1</td>
-                                    <td>Banjaramsin , 1 Juni 1990</td>
-                                    <td>Laki laki</td>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{$d->penyuluhan->nama_penyuluhan}}</td>
+                                    <td>{{$d->nik}}</td>
+                                    <td>{{$d->nama}}</td>
+                                    <td>{{$d->tempat_lahir}},
+                                        {{carbon\carbon::parse($d->tanggal_lahir)->translatedFormat('d F Y')}}</td>
+                                    <td>{{$d->jenis_kelamin}}</td>
                                     <td>
-                                        <form action="{{ route('userAdmin.peserta.destroy',1) }}" method="POST">
+                                        <form action="{{ route('userAdmin.peserta.destroy',$d->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <a class="btn btn-sm btn-info"
-                                                href="{{Route('userAdmin.peserta.show',1)}}"><i
+                                                href="{{Route('userAdmin.peserta.show',$d->id)}}"><i
                                                     class="fa fa-info-circle"></i>&nbsp;Show</a>
                                             <a class="btn btn-sm btn-warning"
-                                                href="{{Route('userAdmin.peserta.edit',1)}}"><i
+                                                href="{{Route('userAdmin.peserta.edit',$d->id)}}"><i
                                                     class="fa fa-edit"></i>&nbsp;Edit</a>
-                                            <button class="btn btn-sm btn-danger mt-1" type="submit"><i class="fa fa-trash"
+                                            <button class="btn btn-sm btn-danger mt-1" type="submit"><i
+                                                    class="fa fa-trash"
                                                     onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"></i>&nbsp;Hapus</button>
                                         </form>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -69,40 +73,43 @@
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header"> 
+            <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{Route('userAdmin.peserta.store')}}" method="POST">
+            <form action="{{Route('userAdmin.peserta.store')}}" enctype="multipart/form-data" method="POST">
                 <div class="modal-body">
-                    @csrf 
+                    @csrf
                     <div class="form-group">
                         <label for="">Pelatihan</label>
-                        <select name="" id="" class="form-control">
-                            <option value="" >- pilih pelatihan -</option>
+                        <select name="penyuluhan_id" id="" class="form-control" required>
+                            <option value="">- pilih pelatihan -</option>
+                            @foreach ($penyuluhan as $d)
+                            <option value="{{$d->id}}">{{$d->nama_penyuluhan}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="">Nik</label>
-                        <input type="text" name="kode_kecamatan" class="form-control" required>
+                        <input type="text" name="nik" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="">Nama</label>
-                        <input type="text" name="nama_kecamatan" class="form-control" required>
+                        <input type="text" name="nama" class="form-control" required>
                     </div>
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
                                 <label for="">Tempat lahir</label>
-                                <input type="text" name="kode_kecamatan" class="form-control" required>
+                                <input type="text" name="tempat_lahir" class="form-control" required>
                             </div>
                         </div>
-                        <div class="col-md"> 
+                        <div class="col-md">
                             <div class="form-group">
                                 <label for="">Tanggal lahir</label>
-                                <input type="date" name="kode_kecamatan" class="form-control" required>
+                                <input type="date" name="tanggal_lahir" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -110,14 +117,14 @@
                     <div class="row mb-2">
                         <div class="col-md">
                             <div class="custom-control custom-radio">
-                                <input type="radio" id="customRadio1" name="jk" value="Laki-laki"
+                                <input type="radio" id="customRadio1" name="jenis_kelamin" value="Laki-laki"
                                     class="custom-control-input" checked>
                                 <label class="custom-control-label" for="customRadio1">Laki-laki</label>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="custom-control custom-radio">
-                                <input type="radio" id="customRadio2" name="jk" value="Perempuan"
+                                <input type="radio" id="customRadio2" name="jenis_kelamin" value="Perempuan"
                                     class="custom-control-input">
                                 <label class="custom-control-label" for="customRadio2">Perempuan</label>
                             </div>
@@ -125,7 +132,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Foto</label>
-                        <input type="file" name="nama_kecamatan" class="form-control" required>
+                        <input type="file" name="foto" class="form-control" required>
                     </div>
                 </div>
                 <div class="modal-footer">

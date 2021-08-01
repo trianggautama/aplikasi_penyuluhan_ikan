@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Penyuluhan;
+use App\Models\Peserta;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class PesertaController extends Controller
@@ -11,10 +14,15 @@ class PesertaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
+    public function __construct()
+    {
+        $this->penyuluhan = Penyuluhan::all();
+    }
     public function index()
     {
-        return view('admin.peserta.index');
+        $penyuluhan = $this->penyuluhan;
+        $data = Peserta::all();
+        return view('admin.peserta.index', compact('data', 'penyuluhan'));
     }
 
     /**
@@ -35,7 +43,20 @@ class PesertaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = Peserta::create($request->all());
+
+        if (isset($req->foto)) {
+            $file = $req->file('foto');
+
+            $file_name = time() . "_" . $file->getClientOriginalName();
+
+            $file->move('lampiran/foto-peserta', $file_name);
+            $data->foto = $file_name;
+        }
+
+        $data->update();
+
+        return back()->withSuccess('Data berhasil disimpan');
     }
 
     /**
@@ -46,7 +67,9 @@ class PesertaController extends Controller
      */
     public function show($id)
     {
-        return view('admin.peserta.show');
+        $data = Peserta::findOrFail($id);
+
+        return view('admin.peserta.show', compact('data'));
     }
 
     /**
@@ -57,7 +80,9 @@ class PesertaController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.peserta.edit');
+        $data = Peserta::findOrFail($id);
+        $penyuluhan = $this->penyuluhan;
+        return view('admin.peserta.edit', compact('data', 'penyuluhan'));
     }
 
     /**
@@ -69,7 +94,22 @@ class PesertaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = Peserta::findOrFail($id);
+        $data->update($request->all());
+
+        if (isset($req->foto)) {
+            $file = $req->file('foto');
+
+            $file_name = time() . "_" . $file->getClientOriginalName();
+
+            $file->move('lampiran/foto-peserta', $file_name);
+            $data->foto = $file_name;
+        }
+
+        $data->update();
+
+        return redirect()->route('userAdmin.peserta.index');
+
     }
 
     /**
@@ -80,6 +120,20 @@ class PesertaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $peserta = Peserta::findOrFail($id);
+
+        {
+            try {
+                $peserta->delete();
+                return back()->withSuccess('Data berhasil dihapus');
+            } catch (QueryException $e) {
+
+                if ($e->getCode() == "23000") {
+                    return back()->withError('Data gagal dihapus');
+                }
+            }
+
+        }
+
     }
 }
