@@ -4,25 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Penyuluhan;
 use App\Models\Peserta;
-use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
-class PesertaController extends Controller
+class PesertaPenyuluhController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function __construct()
     {
         $this->penyuluhan = Penyuluhan::all();
     }
+
     public function index()
     {
-        $penyuluhan = $this->penyuluhan;
-        $data = Peserta::all();
-        return view('admin.peserta.index', compact('data', 'penyuluhan'));
+        //
     }
 
     /**
@@ -69,7 +68,7 @@ class PesertaController extends Controller
     {
         $data = Peserta::findOrFail($id);
 
-        return view('admin.peserta.show', compact('data'));
+        return view('penyuluh.peserta.show', compact('data'));
     }
 
     /**
@@ -82,7 +81,7 @@ class PesertaController extends Controller
     {
         $data = Peserta::findOrFail($id);
         $penyuluhan = $this->penyuluhan;
-        return view('admin.peserta.edit', compact('data', 'penyuluhan'));
+        return view('penyuluh.peserta.edit', compact('data', 'penyuluhan'));
     }
 
     /**
@@ -90,7 +89,7 @@ class PesertaController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response 
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
@@ -108,8 +107,7 @@ class PesertaController extends Controller
 
         $data->update();
 
-        return redirect()->route('userAdmin.peserta.index');
-
+        return redirect()->route('userPenyuluh.penyuluhan_penyuluh.show',$data->penyuluhan_id);
     }
 
     /**
@@ -134,6 +132,5 @@ class PesertaController extends Controller
             }
 
         }
-
     }
 }

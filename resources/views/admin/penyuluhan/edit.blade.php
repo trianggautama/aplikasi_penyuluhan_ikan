@@ -74,10 +74,11 @@
                         <div class="form-group">
                             <label for="">Lampiran</label>
                             <input type="file" name="lampiran" class="form-control">
+                            <small class="text-danger">isi jika ingin mengubah lampiran</small>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Batal</button>
+                        <a href="{{Route('userAdmin.penyuluhan.index')}}" class="btn btn-outline-primary" data-dismiss="modal">Batal</a>
                         <button type="submit" class="btn btn-primary">Simpan Data</button>
                     </div>
                 </form>

@@ -80,6 +80,39 @@
                     </table>
                 </div>
             </div>
+            <br>
+            <div class="card">
+                <div class="card-header">
+                    Peserta Pelatihan
+                </div>
+                <div class="card-body">
+                    <table class="table align-items-center table-flush" id="dataTable">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>No</th>
+                                <th>Pelatihan</th>
+                                <th>NIK</th>
+                                <th>Nama</th>
+                                <th>Tempat,tanggal lahir</th>
+                                <th>Jenis kelamin</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data->peserta as $d)
+                            <tr>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$d->penyuluhan->nama_penyuluhan}}</td>
+                                <td>{{$d->nik}}</td>
+                                <td>{{$d->nama}}</td>
+                                <td>{{$d->tempat_lahir}},
+                                    {{carbon\carbon::parse($d->tanggal_lahir)->translatedFormat('d F Y')}}</td>
+                                <td>{{$d->jenis_kelamin}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>

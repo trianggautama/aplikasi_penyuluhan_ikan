@@ -80,7 +80,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a href="{{Route('userAdmin.peserta.index')}}" class="btn btn-outline-primary" data-dismiss="modal">Batal</a>
+                        <a href="{{Route('userPenyuluh.penyuluhan_penyuluh.show',$data->penyuluhan_id)}}" class="btn btn-outline-primary" data-dismiss="modal">Batal</a>
                         <button type="submit" class="btn btn-primary">Simpan Data</button>
                     </div>
                 </form>

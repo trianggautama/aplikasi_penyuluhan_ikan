@@ -30,7 +30,7 @@
                             Detail Biodata
                         </div>
                         <div class="col-md text-right">
-                            <a href="{{Route('userAdmin.peserta.index')}}" class="btn btn-sm btn-secondary"><i
+                            <a href="{{Route('userPenyuluh.penyuluhan_penyuluh.show',$data->penyuluhan_id)}}" class="btn btn-sm btn-secondary"><i
                                     class="fa fa-arrow-left"></i> kembali</a>
                         </div>
                     </div>

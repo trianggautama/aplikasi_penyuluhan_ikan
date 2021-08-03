@@ -62,8 +62,8 @@ class PenyuluhanController extends Controller
     {
         $data = Penyuluhan::create($request->all());
 
-        if (isset($req->lampiran)) {
-            $file = $req->file('lampiran');
+        if (isset($request->lampiran)) {
+            $file = $request->file('lampiran');
 
             $file_name = rand(3) . "_" . $file->getClientOriginalName();
 
@@ -122,16 +122,14 @@ class PenyuluhanController extends Controller
         $data = Penyuluhan::findOrFail($id);
 
         $data->update($request->all());
-
-        if (isset($req->lampiran)) {
-            $file = $req->file('lampiran');
+        if (isset($request->lampiran)) {
+            $file = $request->file('lampiran');
 
             $file_name = time() . "_" . $file->getClientOriginalName();
 
             $file->move('lampiran/penyuluhan', $file_name);
             $data->lampiran = $file_name;
         }
-
         $data->update();
 
         return redirect()->route('userAdmin.penyuluhan.index')->withSuccess('Data berhasil disimpan');
