@@ -50,7 +50,8 @@
                             <td width="24%">Tempat, tanggal lahir</td>
                             <td width="2%">:</td>
                             <td>{{$user->penyuluh->tempat_lahir}},
-                                {{Carbon\carbon::parse($user->penyuluh->tanggal_lahir)->format('d - m - Y')}}</td>
+                                {{Carbon\carbon::parse($user->penyuluh->tanggal_lahir)->Translatedformat('d F Y')}}
+                            </td>
                         </tr>
                         <tr>
                             <td width="24%">Jenis kelamin</td>
