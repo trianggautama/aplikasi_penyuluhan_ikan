@@ -68,7 +68,7 @@
                         <tr>
                             <td width="20%">Jumlah Peserta</td>
                             <td width="2px">: </td>
-                            <td></td>
+                            <td>{{$data->peserta->count()}}</td>
                         </tr>
                         <tr>
                             <td width="20%">Status Pelatihan</td>
@@ -86,8 +86,8 @@
                     <div class="row">
                         <div class="col-md">Peserta Pelatihan</div>
                         <div class="col-md text-right">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-                                id="#myBtn">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#exampleModal" id="#myBtn">
                                 <i class="fa fa-plus"></i> Tambah Data
                             </button>
                         </div>
@@ -117,15 +117,16 @@
                                     {{carbon\carbon::parse($d->tanggal_lahir)->translatedFormat('d F Y')}}</td>
                                 <td>{{$d->jenis_kelamin}}</td>
                                 <td>
-                                    <form action="{{ route('userPenyuluh.peserta_penyuluh.destroy',$d->id) }}" method="POST">
+                                    <form action="{{ route('userPenyuluh.peserta_penyuluh.destroy',$d->id) }}"
+                                        method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <a class="btn btn-sm btn-success"
-                                                href="{{Route('userPenyuluh.penilaian_peserta.index',$d->id)}}"><i
-                                                    class="fa fa-file"></i>&nbsp;Penilaian</a>
+                                            href="{{Route('userPenyuluh.penilaian_peserta.index',$d->id)}}"><i
+                                                class="fa fa-file"></i>&nbsp;Penilaian</a>
                                         <a class="btn btn-sm btn-info"
-                                                href="{{Route('userPenyuluh.peserta_penyuluh.show',$d->id)}}"><i
-                                                    class="fa fa-info-circle"></i>&nbsp;Show</a>
+                                            href="{{Route('userPenyuluh.peserta_penyuluh.show',$d->id)}}"><i
+                                                class="fa fa-info-circle"></i>&nbsp;Show</a>
                                         <a class="btn btn-sm btn-warning m-1"
                                             href="{{Route('userPenyuluh.peserta_penyuluh.edit',$d->id)}}"><i
                                                 class="fa fa-edit"></i>&nbsp;Edit</a>

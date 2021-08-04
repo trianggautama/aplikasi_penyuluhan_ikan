@@ -15,13 +15,13 @@
                 <div class="card-header">
                     form edit
                 </div>
-                <form action="{{route('userAdmin.jabatan.update',1)}}" method="POST">
+                <form action="{{route('userAdmin.objekPenilaian.update',$data->id)}}" method="POST">
                     @csrf
                     @method('put')
                     <div class="card-body">
                         <div class="form-group">
                             <label for="">Uraian</label>
-                            <input type="text" name="kode_jabatan" class="form-control" required>
+                            <input type="text" name="uraian" value="{{$data->uraian}}" class="form-control" required>
                         </div>
                     </div>
                     <div class="card-footer text-right">

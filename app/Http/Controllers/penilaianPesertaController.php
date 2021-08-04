@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ObjekPenilaian;
+use App\Models\PenilaianPeserta;
+use App\Models\Peserta;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class penilaianPesertaController extends Controller
@@ -13,7 +17,10 @@ class penilaianPesertaController extends Controller
      */
     public function index($id)
     {
-        return view('penyuluh.penilaian_peserta.index');
+        $data = PenilaianPeserta::wherePesertaId($id)->get();
+        $obj = ObjekPenilaian::all();
+        $peserta = Peserta::findOrFail($id);
+        return view('penyuluh.penilaian_peserta.index', compact('data', 'obj', 'peserta'));
     }
 
     /**
@@ -34,7 +41,8 @@ class penilaianPesertaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = PenilaianPeserta::create($request->all());
+        return back()->withSuccess('Data berhasil disimpan');
     }
 
     /**
@@ -56,7 +64,10 @@ class penilaianPesertaController extends Controller
      */
     public function edit($id)
     {
-        return view('penyuluh.penilaian_peserta.edit');
+        $data = PenilaianPeserta::findOrFail($id);
+        $obj = ObjekPenilaian::all();
+
+        return view('penyuluh.penilaian_peserta.edit', compact('data', 'obj'));
     }
 
     /**
@@ -68,7 +79,10 @@ class penilaianPesertaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = PenilaianPeserta::findOrFail($id);
+        $data->update($request->all());
+
+        return redirect()->route('userPenyuluh.penilaian_peserta.index', ['id' => $data->peserta_id])->withSuccess('Data berhasil diubah');
     }
 
     /**
@@ -79,6 +93,17 @@ class penilaianPesertaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = PenilaianPeserta::findOrFail($id);
+
+        try {
+            $data->delete();
+            return back()->withSuccess('Data berhasil dihapus');
+        } catch (QueryException $e) {
+
+            if ($e->getCode() == "23000") {
+                return back()->withError('Data gagal dihapus');
+            }
+        }
+
     }
 }

@@ -13,7 +13,8 @@
         <div class="col-md">
             <div class="card">
                 <div class="card-header text-right">
-                    <a href="" class="btn btn-sm btn-primary"><i class="fa fa-print"></i> Cetak Form Penilaian Manual</a>
+                    <a href="" class="btn btn-sm btn-primary"><i class="fa fa-print"></i> Cetak Form Penilaian
+                        Manual</a>
                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal"
                         id="#myBtn">
                         <i class="fa fa-plus"></i> Tambah Data
@@ -30,21 +31,24 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($data as $d)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem inventore harum accusantium natus vitae, quae illo eaque ipsum tempore accusamus porro quibusdam aut consequatur nesciunt doloribus id totam ullam ab!</td>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{$d->uraian}}</td>
                                     <td>
-                                        <form action="{{ route('userAdmin.objekPenilaian.destroy',1) }}" method="POST">
+                                        <form action="{{ route('userAdmin.objekPenilaian.destroy',$d->id) }}"
+                                            method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <a class="btn btn-sm btn-warning m-1"
-                                                href="{{Route('userAdmin.objekPenilaian.edit',1)}}"><i
+                                                href="{{Route('userAdmin.objekPenilaian.edit',$d->id)}}"><i
                                                     class="fa fa-edit"></i>&nbsp;Edit</a>
                                             <button class="btn btn-sm btn-danger " type="submit"><i class="fa fa-trash"
                                                     onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"></i>&nbsp;Hapus</button>
                                         </form>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -65,12 +69,12 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{route('userAdmin.jabatan.store')}}" method="POST">
+            <form action="{{route('userAdmin.objekPenilaian.store')}}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="">Uraian</label>
-                        <input type="text" name="kode_jabatan" class="form-control" required>
+                        <input type="text" name="uraian" class="form-control" required>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -16,25 +16,29 @@
                     form edit
                 </div>
                 <div class="card-body">
-                <form action="{{route('userAdmin.jabatan.update',1)}}" method="POST">
-                    @csrf
-                    @method('put')
-                    <div class="form-group">
-                        <label for="">Objek Penilaian</label>
-                        <select name="" id="" class="form-control">
-                            <option value="">-- pilih dari objek penilaian --</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Nilai</label>
-                        <input type="text" name="nilai" class="form-control" required>
-                    </div>
-                    </div>
-                    <div class="card-footer text-right">
-                        <a href="{{Route('userPenyuluh.penilaian_peserta.index',1)}}" class="btn btn-outline-primary"
-                            data-dismiss="modal">Kembali</a>
-                        <button type="submit" class="btn btn-primary">Simpan Data</button>
-                    </div>
+                    <form action="{{route('userPenyuluh.penilaian_peserta.update',$data->id)}}" method="POST">
+                        @csrf
+                        @method('put')
+                        <div class="form-group">
+                            <label for="">Objek Penilaian</label>
+                            <select name="objek_penilaian_id" id="" class="form-control" required>
+                                <option value="">-- pilih dari objek penilaian --</option>
+                                @foreach ($obj as $d)
+                                <option value="{{$d->id}}" {{$d->id == $data->objek_penilaian_id ? 'selected' : ''}}>
+                                    {{$d->uraian}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Nilai</label>
+                            <input type="text" name="nilai" value="{{$data->nilai}}" class="form-control" required>
+                        </div>
+                </div>
+                <div class="card-footer text-right">
+                    <a href="{{Route('userPenyuluh.penilaian_peserta.index',1)}}" class="btn btn-outline-primary"
+                        data-dismiss="modal">Kembali</a>
+                    <button type="submit" class="btn btn-primary">Simpan Data</button>
+                </div>
                 </form>
             </div>
         </div>
