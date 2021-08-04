@@ -17,9 +17,9 @@ class MainController extends Controller
     {
         $kecamatan = Kecamatan::count();
         $kelurahan = Kelurahan::count();
-        $jabatan   = Jabatan::count();
-        $penyuluh  = Penyuluh::count();
-        return view('admin.index',compact('kecamatan','kelurahan','jabatan','penyuluh'));
+        $jabatan = Jabatan::count();
+        $penyuluh = Penyuluh::count();
+        return view('admin.index', compact('kecamatan', 'kelurahan', 'jabatan', 'penyuluh'));
     }
 
     public function penyuluh_beranda()
@@ -32,12 +32,12 @@ class MainController extends Controller
     {
         $user = Auth::user();
         $jabatan = Jabatan::latest()->get();
-        return view('penyuluh.profil',compact('user','jabatan'));
+        return view('penyuluh.profil', compact('user', 'jabatan'));
     }
 
-    public function penyuluh_profil_update(Request $request, User $penyuluh)
+    public function penyuluh_profil_update(Request $request, $id)
     {
-        $user = $penyuluh;
+        $user = User::findOrFail($id);
 
         $userRequest = $request->only('username', 'nama', 'role', 'status');
         if (isset($request->password)) {
