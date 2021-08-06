@@ -24,4 +24,9 @@ class Penyuluh extends Model
     {
         return $this->belongsTo(Jabatan::class);
     }
+
+    public function penyuluhan()
+    {
+        return $this->hasMany(Penyuluhan::class);
+    }
 }

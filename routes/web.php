@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\PenilaianPesertaController;use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -41,4 +42,16 @@ Route::prefix('/user-penyuluh')->name('userPenyuluh.')->group(function () {
         Route::put('/index/{id}', [PenilaianPesertaController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [PenilaianPesertaController::class, 'destroy'])->name('destroy');
     });
+});
+
+Route::prefix('/report')->name('report.')->group(function () {
+    Route::get('/penyuluh', [ReportController::class, 'penyuluh'])->name('penyuluh');
+    Route::get('/penyuluh_detail/{id}', [ReportController::class, 'penyuluh_detail'])->name('penyuluh_detail');
+    Route::get('/penyuluhan', [ReportController::class, 'penyuluhan'])->name('penyuluhan');
+    Route::get('/sk_penyuluhan/{id}', [ReportController::class, 'sk_penyuluhan'])->name('sk_penyuluhan');
+    Route::get('/penyuluhan/detail/{id}', [ReportController::class, 'detail_penyuluhan'])->name('detail_penyuluhan');
+    Route::get('/peserta', [ReportController::class, 'peserta'])->name('peserta');
+    Route::get('/kartu_peserta/{id}', [ReportController::class, 'kartu_peserta'])->name('kartu_peserta');
+    Route::get('/penyuluhan_penyuluh', [ReportController::class, 'penyuluhan_penyuluh'])->name('penyuluhan_penyuluh');
+    Route::get('/penilaian_peserta/{id}', [ReportController::class, 'penilaian_peserta'])->name('penilaian_peserta');
 });

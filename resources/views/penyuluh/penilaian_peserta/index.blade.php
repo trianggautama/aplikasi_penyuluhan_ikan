@@ -13,7 +13,7 @@
         <div class="col-md">
             <div class="card">
                 <div class="card-header text-right">
-                    <a href="" class="btn btn-info"><i class="fa fa-print"></i> Cetak Form Penilaian</a>
+                    <a href="{{Route('report.penilaian_peserta',$peserta->id)}}" class="btn btn-info"><i class="fa fa-print"></i> Cetak Form Penilaian</a>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
                         id="#myBtn">
                         <i class="fa fa-plus"></i> Tambah Penilaian
@@ -76,7 +76,7 @@
                     <input type="hidden" name="peserta_id" value="{{$peserta->id}}" required>
                     <div class="form-group">
                         <label for="">Objek Penilaian</label>
-                        <select name="objek_penilaian_id" id="" class="form-control" required>
+                        <select name="objek_penilaian_id" id="" class="form-control" required>  
                             <option value="">-- pilih dari objek penilaian --</option>
                             @foreach ($obj as $d)
                             <option value="{{$d->id}}">{{$d->uraian}}</option>

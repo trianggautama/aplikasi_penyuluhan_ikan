@@ -13,11 +13,12 @@
         <div class="col-md">
             <div class="card">
                 <div class="card-header text-right">
+                    <a href="{{Route('report.penyuluhan')}}" class="btn btn-info" target="__blank"><i class="fa fa-print"></i> Cetak Data</a>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
                         id="#myBtn">
                         <i class="fa fa-plus"></i> Tambah Data
                     </button>
-                </div>
+                </div> 
                 <div class="card-body">
                     <div class="table-responsive p-3">
                         <table class="table align-items-center table-flush" id="dataTable">
@@ -44,6 +45,9 @@
                                         <form action="{{ route('userAdmin.penyuluhan.destroy',$d->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
+                                            <a class="btn btn-sm btn-success mb-1"
+                                                href="{{Route('report.sk_penyuluhan',$d->id)}}" target="_blank"><i
+                                                    class="fa fa-print"></i>&nbsp;Cetak Surat Tugas Penyuluhan</a>
                                             <a class="btn btn-sm btn-info"
                                                 href="{{Route('userAdmin.penyuluhan.show',$d->id)}}"><i
                                                     class="fa fa-info-circle"></i>&nbsp;Show</a>

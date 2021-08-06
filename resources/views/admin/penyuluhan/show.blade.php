@@ -18,6 +18,8 @@
                             Detail Penyuluhan
                         </div>
                         <div class="col-md text-right">
+                            <a href="{{Route('report.detail_penyuluhan',$data->id)}}" class="btn btn-sm btn-primary" target="__blank"><i
+                                    class="fa fa-print"></i> Detail Penyuluhan</a>
                             <a href="{{Route('userAdmin.penyuluhan.index')}}" class="btn btn-sm btn-secondary"><i
                                     class="fa fa-arrow-left"></i> kembali</a>
                         </div>
@@ -68,7 +70,7 @@
                         <tr>
                             <td width="20%">Jumlah Peserta</td>
                             <td width="2px">: </td>
-                            <td></td>
+                            <td>{{$data->peserta->count()}}</td>
                         </tr>
                         <tr>
                             <td width="20%">Status Pelatihan</td>
@@ -90,7 +92,6 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>No</th>
-                                <th>Pelatihan</th>
                                 <th>NIK</th>
                                 <th>Nama</th>
                                 <th>Tempat,tanggal lahir</th>
@@ -101,7 +102,6 @@
                             @foreach ($data->peserta as $d)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$d->penyuluhan->nama_penyuluhan}}</td>
                                 <td>{{$d->nik}}</td>
                                 <td>{{$d->nama}}</td>
                                 <td>{{$d->tempat_lahir}},

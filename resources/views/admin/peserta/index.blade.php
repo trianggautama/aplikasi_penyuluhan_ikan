@@ -13,6 +13,7 @@
         <div class="col-md">
             <div class="card">
                 <div class="card-header text-right">
+                    <a href="{{Route('report.peserta')}}" class="btn btn-sm btn-primary" target="__blank"><i class="fa fa-print"></i> Cetak Data</a>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
                         id="#myBtn">
                         <i class="fa fa-plus"></i> Tambah Data
@@ -24,7 +25,7 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th>No</th>
-                                    <th>Pelatihan</th>
+                                    <th>Penyuluhan</th>
                                     <th>NIK</th>
                                     <th>Nama</th>
                                     <th>Tempat,tanggal lahir</th>

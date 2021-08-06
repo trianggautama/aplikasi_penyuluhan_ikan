@@ -13,6 +13,7 @@
         <div class="col-md">
             <div class="card">
                 <div class="card-header text-right">
+                    <a href="{{Route('report.penyuluh')}}" class="btn btn-info" target="__blank"><i class="fa fa-print"></i> Cetak Data</a>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
                         id="#myBtn">
                         <i class="fa fa-plus"></i> Tambah Data
@@ -56,6 +57,9 @@
                                         <form action="{{ route('userAdmin.penyuluh.destroy',$d->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
+                                            <a class="btn btn-sm btn-info mb-1"
+                                                href="{{Route('report.penyuluh_detail',$d->id)}}" target="_blank"><i
+                                                    class="fa fa-print"></i>&nbsp;Biodata</a>
                                             <a class="btn btn-sm btn-warning mb-1"
                                                 href="{{Route('userAdmin.penyuluh.edit',$d->id)}}"><i
                                                     class="fa fa-edit"></i>&nbsp;Edit</a>

@@ -13,10 +13,7 @@
         <div class="col-md">
             <div class="card">
                 <div class="card-header text-right">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-                        id="#myBtn">
-                        <i class="fa fa-print"></i> Cetak Data
-                    </button>
+                    <a href="{{Route('report.penyuluhan_penyuluh')}}" class="btn btn-primary" target="__blank"> <i class="fa fa-print"></i> Cetak Data</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive p-3">

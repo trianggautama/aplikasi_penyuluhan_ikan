@@ -18,8 +18,8 @@
                             Detail Penyuluhan
                         </div>
                         <div class="col-md text-right">
-                            <a href="{{Route('userAdmin.penyuluhan.index')}}" class="btn btn-sm btn-secondary"><i
-                                    class="fa fa-arrow-left"></i> kembali</a>
+                            <a href="{{Route('report.detail_penyuluhan',$data->id)}}" class="btn btn-sm btn-primary" target="__blank"><i class="fa fa-print"></i> Detail Penyuluhan</a>
+                            <a href="{{Route('userAdmin.penyuluhan.index')}}" class="btn btn-sm btn-secondary"><i class="fa fa-arrow-left"></i> kembali</a>
                         </div>
                     </div>
                 </div>
