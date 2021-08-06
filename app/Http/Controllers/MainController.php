@@ -6,6 +6,8 @@ use App\Models\Jabatan;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Penyuluh;
+use App\Models\Penyuluhan;
+use App\Models\Peserta;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +21,9 @@ class MainController extends Controller
         $kelurahan = Kelurahan::count();
         $jabatan = Jabatan::count();
         $penyuluh = Penyuluh::count();
-        return view('admin.index', compact('kecamatan', 'kelurahan', 'jabatan', 'penyuluh'));
+        $agenda  = Penyuluhan::count();
+        $peserta  = Peserta::count();
+        return view('admin.index', compact('kecamatan', 'kelurahan', 'jabatan', 'penyuluh','agenda','peserta'));
     }
 
     public function penyuluh_beranda()
