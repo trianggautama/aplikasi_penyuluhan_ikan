@@ -14,7 +14,7 @@
             <div class="card">
               <div class="card-body">
                 <h3>Selamat Data</h3>
-                <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque ut animi, aliquid officiis, ad illo in iusto fuga dignissimos dolore quibusdam ducimus odit, magnam aut a? Earum temporibus officiis explicabo?</p>
+                <p class="text-justify">Di Aplikasi Penyuluhan Dinas Perikanan dan Kelautan Hulu Sungai Utara</p>
               </div>
             </div>
             </div>            
