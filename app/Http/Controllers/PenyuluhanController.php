@@ -65,7 +65,7 @@ class PenyuluhanController extends Controller
         if (isset($request->lampiran)) {
             $file = $request->file('lampiran');
 
-            $file_name = rand(3) . "_" . $file->getClientOriginalName();
+            $file_name = time() . "_" . $file->getClientOriginalName();
 
             $file->move('lampiran/penyuluhan', $file_name);
             $data->lampiran = $file_name;
