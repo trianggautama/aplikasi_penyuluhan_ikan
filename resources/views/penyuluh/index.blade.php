@@ -13,7 +13,7 @@
             <div class="col-md">
             <div class="card">
               <div class="card-body">
-                <h3>Selamat Data</h3>
+                <h3>Selamat Datang ( {{Auth::user()->nama}} )</h3>
                 <p class="text-justify">Di Aplikasi Penyuluhan Dinas Perikanan dan Kelautan Hulu Sungai Utara</p>
               </div>
             </div>
