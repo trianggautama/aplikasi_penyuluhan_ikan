@@ -16,7 +16,20 @@ class PenyuluhanPenyuluhController extends Controller
      */
     public function index()
     {
+        $now = Carbon::now();
         $data = Penyuluhan::where('penyuluh_id', Auth::user()->penyuluh->id)->latest()->get();
+        $data->map(function ($item) use ($now) {
+
+            if (Carbon::parse($item->tgl_mulai) >= $now) {
+                $item['status'] = '<div class="badge badge-info">Belum mulai</div>';
+                $item['stat'] = 0;
+            } else {
+                $item['status'] = '<div class="badge badge-success">Sudah mulai</div>';
+                $item['stat'] = 1;
+            }
+
+            return $item;
+        });
         return view('penyuluh.penyuluhan.index',compact('data'));
     }
 
@@ -51,13 +64,13 @@ class PenyuluhanPenyuluhController extends Controller
     {
         $data = Penyuluhan::findOrFail($id);
         $now = Carbon::now();
-        if (Carbon::parse($data->tanggal_mulai) >= $now) {
+        if (Carbon::parse($data->tgl_mulai) >= $now) {
+            $data['stat'] = 0;
             $data['status'] = '<div class="badge badge-info">Belum mulai</div>';
         } else {
-            $data['status'] = '<div class="badge badge-primary">Sudah mulai</div>';
-
+            $data['status'] = '<div class="badge badge-success">Sudah mulai</div>';
+            $data['stat'] = 1;
         }
-
         return view('penyuluh.penyuluhan.show', compact('data'));
     }
 

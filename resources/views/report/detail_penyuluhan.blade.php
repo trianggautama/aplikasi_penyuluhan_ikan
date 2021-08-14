@@ -92,14 +92,14 @@
     <div class="container">
     <hr style="margin-top:1px;">
         <div class="isi">
-            <h2 style="text-align:center; text-transform:uppercase;">DETAIL PENYULUH</h2>
+            <h2 style="text-align:center; text-transform:uppercase;">DETAIL KEGIATAN PENYULUHAN</h2>
             <br>
                 <table class="table table-striped">
                     <tr>
                         <td width="25%">Nama Pelatihan</td> 
                         <td width="3%">:</td>
                         <td>{{$data->nama_penyuluhan}}</td>
-                    </tr>
+                    </tr>   
                     <tr>
                         <td width="25%">Keterangan</td>
                         <td width="3%">:</td>
@@ -116,7 +116,7 @@
                             </td>
                             <td>{{$data->kelurahan->nama_kelurahan}}
                                 {{$data->kelurahan->kecamatan->nama_kecamatan}}</td>
-                        </tr>
+                        </tr> 
                         <tr>
                             <td width="25%">Tanggal Pelaksanaan</td>
                             <td width="3%">:</td>
@@ -131,7 +131,7 @@
                         <tr>
                             <td width="25%">Jumlah Peserta</td>
                             <td width="3%">: </td>
-                            <td>{{$data->peserta->count()}}</td>
+                            <td>{{$data->peserta->count()}} Orang</td>
                         </tr>
                         <tr>
                             <td width="25%">Status Pelatihan</td>
@@ -170,7 +170,7 @@
                 <br>
                 <br>
                 <div class="ttd">
-                <p style="margin:0px"> Banjarbaru,.........</p>
+                <p style="margin:0px"> Amuntai,.........</p>
                 <h6 style="margin:0px">Mengetahui</h6>
                 <h5 style="margin:0px">Kepala Dinas Perikanan</h5>
                 <br>

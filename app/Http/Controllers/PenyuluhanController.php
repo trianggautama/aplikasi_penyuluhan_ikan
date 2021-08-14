@@ -30,11 +30,12 @@ class PenyuluhanController extends Controller
         $now = Carbon::now();
         $data->map(function ($item) use ($now) {
 
-            if (Carbon::parse($item->tanggal_mulai) >= $now) {
+            if (Carbon::parse($item->tgl_mulai) >= $now) {
                 $item['status'] = '<div class="badge badge-info">Belum mulai</div>';
+                $item['stat'] = 0;
             } else {
                 $item['status'] = '<div class="badge badge-primary">Sudah mulai</div>';
-
+                $item['stat'] = 1;
             }
 
             return $item;
@@ -81,12 +82,12 @@ class PenyuluhanController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function show($id)
     {
         $data = Penyuluhan::findOrFail($id);
         $now = Carbon::now();
-        if (Carbon::parse($data->tanggal_mulai) >= $now) {
+        if (Carbon::parse($data->tgl_mulai) >= $now) {
             $data['status'] = '<div class="badge badge-info">Belum mulai</div>';
         } else {
             $data['status'] = '<div class="badge badge-primary">Sudah mulai</div>';
@@ -153,5 +154,17 @@ class PenyuluhanController extends Controller
             }
         }
 
+    }
+
+    public function filter_detail()
+    {
+        $penyuluhan = Penyuluhan::latest()->get();
+        return view('admin.penyuluhan.filter_detail',compact('penyuluhan'));
+    }
+
+    public function filter_sk()
+    {
+        $penyuluhan = Penyuluhan::latest()->get();
+        return view('admin.penyuluhan.filter_sk',compact('penyuluhan'));
     }
 }

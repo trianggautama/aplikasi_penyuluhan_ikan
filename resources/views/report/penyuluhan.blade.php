@@ -88,7 +88,7 @@
     <div class="container">
     <hr style="margin-top:1px;">
         <div class="isi">
-            <h2 style="text-align:center;">DATA PENYULUH</h2>
+            <h2 style="text-align:center;">DATA PENYULUHAN</h2>
             <br>
             <table class="table align-items-center table-flush" id="dataTable">
                             <thead class="thead-light">
@@ -98,6 +98,7 @@
                                     <th>Nama Penyuluh</th>
                                     <th>Kelurahan</th>
                                     <th>Tanggal Kegiatan</th>
+                                    <th>Total Peserta</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -109,6 +110,7 @@
                                     <td>{{$d->kelurahan->nama_kelurahan}}</td>
                                     <td>{{carbon\carbon::parse($d->tgl_mulai)->translatedFormat('d F Y')}} -
                                         {{carbon\carbon::parse($d->tgl_selesai)->translatedFormat('d F Y')}}</td>
+                                    <td>{{$d->peserta->count()}} Peserta</td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -116,7 +118,7 @@
                 <br>
                 <br>
                 <div class="ttd">
-                <p style="margin:0px"> Banjarbaru,</p>
+                <p style="margin:0px"> Amuntai,</p>
                 <h6 style="margin:0px">Mengetahui</h6>
                 <h5 style="margin:0px">Kepala Dinas Perikanan </h5>
                 <br>

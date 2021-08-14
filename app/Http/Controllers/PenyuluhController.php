@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jabatan;
+use App\Models\Penyuluh;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -119,5 +120,11 @@ class PenyuluhController extends Controller
                 return back()->withError('Data gagal dihapus');
             }
         }
+    }
+
+    public function filter()
+    {
+        $penyuluh = Penyuluh::latest()->get();
+        return view('admin.user_penyuluh.filter',compact('penyuluh'));
     }
 }

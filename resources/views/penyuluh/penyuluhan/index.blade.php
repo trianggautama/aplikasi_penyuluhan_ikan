@@ -25,6 +25,8 @@
                                     <th>Nama Penyuluh</th>
                                     <th>Kelurahan</th>
                                     <th>Tanggal Kegiatan</th>
+                                    <th>Status</th>
+                                    <th>Peserta</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -38,10 +40,18 @@
                                     <td>{{carbon\carbon::parse($d->tgl_mulai)->translatedFormat('d F Y')}} -
                                         {{carbon\carbon::parse($d->tgl_selesai)->translatedFormat('d F Y')}}</td>
                                     <td>
+                                        @if($d->stat == 0)
+                                            <div class="badge badge-info">Belum mulai</div>
+                                        @else
+                                            <div class="badge badge-success">sudah berlangsung</div>
+                                        @endif
+                                    </td>
+                                    <td>{{$d->peserta->count()}} Orang</td>
+                                    <td>
                                             <a class="btn btn-sm btn-info"
                                                 href="{{Route('userPenyuluh.penyuluhan_penyuluh.show',$d->id)}}"><i
                                                     class="fa fa-info-circle"></i>&nbsp;Show</a>
-                                    </td>
+                                    </td> 
                                 </tr>
                                 @endforeach
                             </tbody>

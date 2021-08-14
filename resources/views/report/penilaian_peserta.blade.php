@@ -17,13 +17,12 @@
         width:100%;
       }
       table, th, td{
-        border: 1px solid black;
       }
       th{
         text-align: center;
       }
       td{
-        text-align: center;
+        /* text-align: center; */
       }
       br{
           margin-bottom: 5px !important;
@@ -68,8 +67,14 @@
      .text-right{
          text-align:right;
      }
+     .text-center{
+         text-align:center;
+     }
      .isi{
          padding:10px;
+     }
+     .border{
+        border: 1px solid black;
      }
     </style>
 </head>
@@ -90,40 +95,105 @@
         <div class="isi">
             <h2 style="text-align:center;">DATA PENILAIAN PESERTA </h2>
             <br>
-            <h4 style="margin:0px;">Nama : {{$peserta->nama}}</h4>
-            <h4 style="margin:0px;">NIK : {{$peserta->nik}}</h4>
+            <p style="margin:0px;"><b>Data Peserta</b></p>
+            <table class="table table-striped" style="margin-top:10px;">
+                <tr>
+                    <td width="25%">Nama </td> 
+                    <td width="3%">:</td>
+                    <td>{{$peserta->nama}}</td>
+                </tr>   
+                <tr>
+                    <td width="25%">NIK</td>
+                    <td width="3%">:</td>
+                    <td>{{$peserta->nik}}</td>
+                </tr>
+                <tr>
+                    <td width="25%">Tempat, tanggal lahir</td>
+                    <td width="3%">:</td>
+                    <td>{{$peserta->tempat_lahir}},
+                        {{carbon\carbon::parse($peserta->tanggal_lahir)->translatedFormat('d F Y')}}</td>
+                </tr>
+                <tr>
+                    <td width="25%">Jenis kelamin</td>
+                    <td width="3%">:</td>
+                    <td>{{$peserta->jenis_kelamin}}</td>
+                </tr>
+            </table>
+            <br>
+            <p style="margin:0px;"><b>Data Kegiatan Penyuluhan</b></p>
+            <table class="table table-striped" style="margin-top:10px;">
+                    <tr>
+                        <td width="25%">Nama Pelatihan</td> 
+                        <td width="3%">:</td>
+                        <td>{{$peserta->penyuluhan->nama_penyuluhan}}</td>
+                    </tr>   
+                    <tr>
+                        <td width="25%">Keterangan</td>
+                        <td width="3%">:</td>
+                        <td>{{$peserta->penyuluhan->keterangan}}</td>
+                    </tr>
+                    <tr>
+                        <td width="25%">Penyuluh</td>
+                        <td width="3%">:</td>
+                        <td>{{$peserta->penyuluhan->penyuluh->user->nama}}</td>
+                    </tr>
+                    <tr>
+                            <td width="25%">Kelurahan - Kecamatan</td>
+                            <td width="3%">:
+                            </td>
+                            <td>{{$peserta->penyuluhan->kelurahan->nama_kelurahan}}
+                                {{$peserta->penyuluhan->kelurahan->kecamatan->nama_kecamatan}}</td>
+                        </tr> 
+                        <tr>
+                            <td width="25%">Tanggal Pelaksanaan</td>
+                            <td width="3%">:</td>
+                            <td>{{carbon\carbon::parse($peserta->penyuluhan->tgl_mulai)->translatedFormat('d F Y')}} -
+                                {{carbon\carbon::parse($peserta->penyuluhan->tgl_selesai)->translatedFormat('d F Y')}}</td>
+                        </tr>
+                        <tr>
+                            <td width="25%">Tempat pelatihan</td>
+                            <td width="3%">:</td>
+                            <td>{{$peserta->penyuluhan->tempat_pelatihan}}</td>
+                        </tr>
+                </table>
             <br>
                 <table class="table align-items-center table-flush" id="dataTable">
                             <thead class="thead-light">
                                 <tr>
-                                    <th>No</th>
-                                    <th>Objek Penilaian</th>
-                                    <th>Nilai</th>
+                                    <th class="text-center border">No</th>
+                                    <th class="text-center border">Objek Penilaian</th>
+                                    <th class="text-center border">Nilai</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @if($data->isNotEmpty())
                                 @foreach ($data as $d)
                                 <tr>
-                                    <td>{{$loop->iteration}}</td>
-                                    <td>{{$d->objek_penilaian->uraian}}</td>
-                                    <td>{{$d->nilai}}</td>
+                                    <td class="text-center border">{{$loop->iteration}}</td>
+                                    <td class="text-center border">{{$d->objek_penilaian->uraian}}</td>
+                                    <td class="text-center border">{{$d->nilai}}</td>
                                 </tr>
                                 @endforeach
                                 <tr>
-                                    <td colspan="2">Rata-rata</td>
-                                    <td>
+                                    <td colspan="2" class="text-center border">Rata-rata</td>
+                                    <td class="text-center border">
                                         @php
                                             $rata_rata = $data->sum('nilai') / $data->count();
                                         @endphp
                                         {{$rata_rata}}
                                     </td>
                                 </tr>
+                                @else
+                                <tr>
+                                    <td colspan="3" class="text-center border">Nilai Belum di Input</td>
+                                </tr>
+                                @endif
                             </tbody>
                         </table>
                 <br>
                 <br>
                 <div class="ttd">
-                <p style="margin:0px"> Banjarbaru,</p>
+                <p style="margin:0px"> Amuntai,</p>
                 <h6 style="margin:0px">Mengetahui</h6>
                 <h5 style="margin:0px">Kepala Dinas Perikanan </h5>
                 <br>
