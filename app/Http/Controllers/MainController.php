@@ -33,7 +33,7 @@ class MainController extends Controller
         $now = Carbon::now();
         $penyuluhan->map(function ($item) use ($now) {
 
-            if (Carbon::parse($item->tanggal_mulai) >= $now) {
+            if (Carbon::parse($item->tgl_mulai) >= $now) {
                 $item['stat'] = 0;
             } else {
                 $item['stat'] = 1;
