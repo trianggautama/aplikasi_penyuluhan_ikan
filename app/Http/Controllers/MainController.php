@@ -30,7 +30,7 @@ class MainController extends Controller
     public function penyuluh_beranda()
     { 
         $now = Carbon::now();
-        $penyuluhan = Penyuluhan::latest()->get();
+        $penyuluhan = Penyuluhan::where('penyuluh_id',Auth::user()->penyuluh->id)->latest()->get();
         $penyuluhan->map(function ($item) use ($now) {
 
             if ($now >= carbon::parse($item->tgl_mulai) && $now <= carbon::parse($item->tgl_selesai)) {

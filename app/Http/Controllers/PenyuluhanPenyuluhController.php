@@ -16,7 +16,7 @@ class PenyuluhanPenyuluhController extends Controller
      */
     public function index()
     {
-        $now = Carbon::now();
+        $now  = Carbon::now();
         $data = Penyuluhan::where('penyuluh_id', Auth::user()->penyuluh->id)->latest()->get();
         $data->map(function ($item) use ($now) {
 

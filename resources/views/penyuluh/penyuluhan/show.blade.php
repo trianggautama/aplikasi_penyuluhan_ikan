@@ -11,7 +11,7 @@
 
     <div class="row mb-3">
         <div class="col-md">
-            <div class="card">
+            <div class="card"> 
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-2">
@@ -46,7 +46,7 @@
                             <td><a href="{{asset('lampiran/penyuluhan/'.$data->lampiran)}}"
                                     class="btn btn-sm btn-primary"><i class="fa fa-paperclip"></i> Lampiran</a>
                             </td>
-                        </tr>
+                        </tr> 
                         <tr>
                             <td width="20%">Penyuluh</td>
                             <td width="2%">:</td>

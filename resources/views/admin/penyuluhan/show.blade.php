@@ -52,7 +52,7 @@
                         <tr>
                             <td width="20%">Penyuluh</td>
                             <td width="2%">:</td>
-                            <td>{{$data->penyuluh->user->nama}}</td>
+                            <td>{{$data->penyuluh->user->nama}}</td> 
                         </tr>
                         <tr>
                             <td width="20%">Kelurahan - Kecamatan</td>
