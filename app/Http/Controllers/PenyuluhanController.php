@@ -28,15 +28,7 @@ class PenyuluhanController extends Controller
         $penyuluh = $this->penyuluh;
         $data = Penyuluhan::all();
         $now = Carbon::now();
-        // if (carbon::parse($data->tgl_mulai >= $now)) {
-        //     dd('mulai');
-        // } else if (carbon::parse($data->tgl_selesai) > $now) {
-        //     dd('lewat');
-
-        // } else {
-        //     dd('kurang');
-        // }
-
+ 
         $data->map(function ($item) use ($now) {
 
             if ($now >= carbon::parse($item->tgl_mulai) && $now <= carbon::parse($item->tgl_selesai)) {
@@ -96,11 +88,14 @@ class PenyuluhanController extends Controller
     {
         $data = Penyuluhan::findOrFail($id);
         $now = Carbon::now();
-        if (Carbon::parse($data->tgl_mulai) >= $now) {
-            $data['status'] = '<div class="badge badge-info">Belum mulai</div>';
-        } else {
-            $data['status'] = '<div class="badge badge-primary">Sudah mulai</div>';
 
+
+        if ($now >= carbon::parse($data->tgl_mulai) && $now <= carbon::parse($data->tgl_selesai)) {
+            $data['status'] = 1;
+        } else if ($now > carbon::parse($data->tgl_selesai) && $now > carbon::parse($data->tgl_mulai)) {
+            $data['status'] = 2;
+        } else {
+            $data['status'] = 0;
         }
 
         return view('admin.penyuluhan.show', compact('data'));
@@ -160,7 +155,7 @@ class PenyuluhanController extends Controller
 
             if ($e->getCode() == "23000") {
                 return back()->withError('Data gagal dihapus');
-            }
+            } 
         }
 
     }
@@ -175,5 +170,11 @@ class PenyuluhanController extends Controller
     {
         $penyuluhan = Penyuluhan::latest()->get();
         return view('admin.penyuluhan.filter_sk', compact('penyuluhan'));
+    }
+
+    public function filter_kehadiran()
+    {
+        $penyuluhan = Penyuluhan::latest()->get();
+        return view('admin.penyuluhan.filter_kehadiran', compact('penyuluhan'));
     }
 }

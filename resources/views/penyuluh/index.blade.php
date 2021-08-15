@@ -50,7 +50,7 @@
                                     <td>{{carbon\carbon::parse($d->tgl_mulai)->translatedFormat('d F Y')}} -
                                         {{carbon\carbon::parse($d->tgl_selesai)->translatedFormat('d F Y')}}</td>
                                     <td>
-                                        @if($d->stat == 0)
+                                        @if($d->status == 0)
                                             <div class="badge badge-info">Belum mulai</div>
                                         @else
                                             <div class="badge badge-success">sudah berlangsung</div>

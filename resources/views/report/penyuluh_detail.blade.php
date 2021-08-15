@@ -96,6 +96,7 @@
             <br>
                 <table class="table table-striped">
                     <tr>
+                        <td rowspan="5" class="text-center"><img src="lampiran/foto-penyuluh/{{$data->foto}}" alt="" width="150"></td>
                         <td width="25%">NIP</td> 
                         <td width="3%">:</td>
                         <td>{{$data->nip}}</td>

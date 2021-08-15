@@ -40,10 +40,12 @@
                                     <td>{{carbon\carbon::parse($d->tgl_mulai)->translatedFormat('d F Y')}} -
                                         {{carbon\carbon::parse($d->tgl_selesai)->translatedFormat('d F Y')}}</td>
                                     <td>
-                                        @if($d->stat == 0)
-                                            <div class="badge badge-info">Belum mulai</div>
+                                        @if($d->status == 0)
+                                            <div class="badge badge-warning">belum berlangsung</div>
+                                        @elseif($d->status == 1)
+                                            <div class="badge badge-primary">sedang berlangsung</div>
                                         @else
-                                            <div class="badge badge-success">sudah berlangsung</div>
+                                            <div class="badge badge-success">sudah lewat</div>
                                         @endif
                                     </td>
                                     <td>{{$d->peserta->count()}} Orang</td>

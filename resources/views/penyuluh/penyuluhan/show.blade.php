@@ -79,7 +79,13 @@
                             <td width="20%">Status Pelatihan</td>
                             <td width="2px">:</td>
                             <td>
-                                {!! $data->status !!}
+                                @if($data->status == 0)
+                                    <div class="badge badge-warning">belum berlangsung</div>
+                                @elseif($data->status == 1)
+                                    <div class="badge badge-primary">sedang berlangsung</div>
+                                @else
+                                    <div class="badge badge-success">sudah lewat</div>
+                                @endif
                             </td>
                         </tr>
                     </table>
@@ -126,7 +132,7 @@
                                         method="POST">
                                         @csrf
                                         @method('DELETE') -->
-                                        <a class="btn btn-sm btn-success @if($data->stat == 0) disabled @endif"
+                                        <a class="btn btn-sm btn-success @if($data->status != 2) disabled @endif"
                                             href="{{Route('userPenyuluh.penilaian_peserta.index',$d->id)}}"><i
                                                 class="fa fa-file"></i>&nbsp;Penilaian</a>
                                         <a class="btn btn-sm btn-info"

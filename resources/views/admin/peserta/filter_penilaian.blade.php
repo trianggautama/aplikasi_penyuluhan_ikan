@@ -18,13 +18,20 @@
                 <form action="{{Route('report.peserta_penilaian.filter')}}" enctype="multipart/form-data" method="GET" target="__blank">
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="">Peserta</label>
-                            <select name="peserta_id" id="" class="form-control" required>
-                                <option value="">- pilih peserta -</option>
-                                @foreach ($peserta as $d)
+                            <label for="">Penyuluhan</label>
+                            <select name="penyuluhan_id" id="penyuluhan_id" class="form-control" required>
+                                <option value="">- pilih penyuluhan -</option>
+                                @foreach ($penyuluhan as $d)
                                 <option value="{{$d->id}}">
-                                    {{$d->nama}} / ( {{$d->nik}} )</option>
+                                    {{$d->nama_penyuluhan}} ( {{carbon\carbon::parse($d->tgl_mulai)->translatedFormat('d F Y')}} -
+                                        {{carbon\carbon::parse($d->tgl_selesai)->translatedFormat('d F Y')}} )</option>
                                 @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Peserta</label>
+                            <select name="peserta_id" id="peserta_id" class="form-control" required>
+                                <option value="">- pilih peserta -</option>
                             </select>
                         </div>
                     </div>
@@ -38,5 +45,22 @@
 </div>
 @endsection
 @section('script')
-
+<script>
+       $( "#penyuluhan_id" ).change(function() {
+            let penyuluhan_id =   $( "#penyuluhan_id" ).val();
+            let url       = '{{Route("api.peserta","")}}'
+            axios.get( `${url}/${penyuluhan_id} `)
+            .then(function (response) {
+                $('#peserta_id').children('option:not(:first)').remove();
+                $.each(response.data, function (index, value) {
+                        $('#peserta_id').append(
+                            '<option value="'+value.id+'">'+value.nama+'</option>'
+                        )
+                    }) 
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+        }); 
+</script>
 @endsection

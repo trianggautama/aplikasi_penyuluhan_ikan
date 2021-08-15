@@ -19,9 +19,10 @@
                         </div>
                         <div class="col-md text-right">
                             <form action="{{Route('report.peserta.filter')}}" enctype="multipart/form-data" method="GET" target="__blank">
+                                <a href="{{Route('report.daftar_hadir',$data->id)}}" class="btn btn-sm btn-primary" target="__blank"><i class="fa fa-print"></i> Daftar Hadir</a>
                                 <a href="{{Route('report.detail_penyuluhan',$data->id)}}" class="btn btn-sm btn-primary" target="__blank"><i class="fa fa-print"></i> Detail Penyuluhan</a>
                                <input type="hidden" name="penyuluhan_id" value="{{$data->id}}">
-                                <button type="submit" class="btn btn-sm btn-primary" target="__blank"><i class="fa fa-users"></i> Cetak Peserta Kegiatan Penyuluahan</button>
+                                <!-- <button type="submit" class="btn btn-sm btn-primary" target="__blank"><i class="fa fa-users"></i> Cetak Peserta Kegiatan Penyuluahan</button> -->
                                 <a href="{{Route('userAdmin.penyuluhan.index')}}" class="btn btn-sm btn-secondary"><i
                                     class="fa fa-arrow-left"></i> kembali</a>
                             </form>
@@ -30,7 +31,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped">
+                    <table class="table table-striped"> 
                         <tr>
                             <td width="20%">Nama Pelatihan</td>
                             <td width="2px">:</td>
@@ -80,7 +81,13 @@
                             <td width="20%">Status Pelatihan</td>
                             <td width="2px">:</td>
                             <td>
-                                {!! $data->status !!} 
+                            @if($data->status == 0)
+                                <div class="badge badge-warning">belum berlangsung</div>
+                            @elseif($data->status == 1)
+                                <div class="badge badge-primary">sedang berlangsung</div>
+                            @else
+                                <div class="badge badge-success">sudah lewat</div>
+                            @endif
                             </td>
                         </tr>
                     </table>
@@ -92,10 +99,12 @@
                     <div class="row">
                         <div class="col-md">Peserta Penyuluhan</div>
                         <div class="col-md text-right">
+                            @if($data->status != 2)
                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#exampleModal" id="#myBtn">
                                 <i class="fa fa-plus"></i> Tambah Data
                             </button>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -128,11 +137,13 @@
                                         <a class="btn btn-sm btn-info"
                                             href="{{Route('userAdmin.peserta.show',$d->id)}}"><i
                                                 class="fa fa-info-circle"></i>&nbsp;Show</a>
+                                        @if($data->status != 2)
                                         <a class="btn btn-sm btn-warning m-1"
                                             href="{{Route('userAdmin.peserta.edit',$d->id)}}"><i
                                                 class="fa fa-edit"></i>&nbsp;Edit</a>
                                         <button class="btn btn-sm btn-danger " type="submit"><i class="fa fa-trash"
                                                 onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"></i>&nbsp;Hapus</button>
+                                        @endif
                                     </form>
                                 </td>
                             </tr>

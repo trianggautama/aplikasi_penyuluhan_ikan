@@ -172,5 +172,29 @@ class ReportController extends Controller
         
         return $pdf->stream('Penilaian Peserta.pdf');
     }
+
+    public function daftar_hadir($id)
+    {
+        $data               = Penyuluhan::findOrFail($id);
+        $tgl_mulai          = Carbon::parse($data->tgl_mulai);
+        $data->total_hari   = $tgl_mulai->diffInDays(Carbon::parse($data->tgl_selesai));
+
+        $pdf    = PDF::loadView('report.daftar_isi', ['data'=>$data]);
+        $pdf->setPaper('a4', 'prtrait'); 
+        
+        return $pdf->stream('Laporan Daftar Isi.pdf');
+    }
+
+    public function penyuluhan_kehadiran_filter(Request $req)
+    {
+        $data               = Penyuluhan::findOrFail($req->penyuluhan_id);
+        $tgl_mulai          = Carbon::parse($data->tgl_mulai);
+        $data->total_hari   = $tgl_mulai->diffInDays(Carbon::parse($data->tgl_selesai));
+
+        $pdf    = PDF::loadView('report.daftar_isi', ['data'=>$data]);
+        $pdf->setPaper('a4', 'prtrait'); 
+        
+        return $pdf->stream('Laporan Daftar Isi.pdf');
+    }
 }
  

@@ -91,9 +91,10 @@
             <a class="collapse-item" href="{{Route('report.penyuluhan')}}" target="__blank">Kegiatan Penyuluhan</a>
             <a class="collapse-item" href="{{Route('userAdmin.penyuluhan.filter_detail')}}">Detail Penyuluhan</a>
             <a class="collapse-item" href="{{Route('userAdmin.penyuluhan.filter_sk')}}">SK Penyuluhan</a>
+            <a class="collapse-item" href="{{Route('userAdmin.penyuluhan.filter_kehadiran')}}">Daftar Kehadiran Peserta</a>
             <a class="collapse-item" href="{{Route('report.peserta')}}" target="__blank">Peserta Keseluruhan</a>
             <a class="collapse-item" href="{{Route('userAdmin.peserta.filter')}}">Peserta Filter Kegiatan</a>
-            <a class="collapse-item" href="{{Route('userAdmin.peserta.filter_kartu')}}">Kartu Peserta</a>
+            <!-- <a class="collapse-item" href="{{Route('userAdmin.peserta.filter_kartu')}}">Kartu Peserta</a> -->
             <a class="collapse-item" href="{{Route('userAdmin.peserta.filter_penilaian')}}">Penilaian Peserta</a>
           </div>
         </div>
@@ -260,6 +261,7 @@
   <!-- Page level plugins -->
   <script src="{{asset('admin/vendor/datatables/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset('admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+  <script src="{{asset('admin/axios.min.js')}}" ></script>
   @yield('script')
   <script>
     $(document).ready(function () {

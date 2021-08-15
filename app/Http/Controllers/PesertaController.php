@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Penyuluhan;
 use App\Models\Peserta;
+use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
@@ -152,7 +153,14 @@ class PesertaController extends Controller
 
     public function filter_penilaian()
     {
-        $peserta = Peserta::latest()->get();
-        return view('admin.peserta.filter_penilaian',compact('peserta'));
+        $now = Carbon::now();
+        $penyuluhan = Penyuluhan::where('tgl_selesai','<',$now)->latest()->get();
+        return view('admin.peserta.filter_penilaian',compact('penyuluhan'));
+    }
+
+    public function api($id)
+    {
+        $peserta = Peserta::where('penyuluhan_id', $id)->latest()->get();
+        return $peserta;
     }
 }

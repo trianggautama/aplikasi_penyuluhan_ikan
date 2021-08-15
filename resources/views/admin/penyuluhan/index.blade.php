@@ -45,19 +45,14 @@
                                     <td>{{carbon\carbon::parse($d->tgl_mulai)->translatedFormat('d F Y')}} -
                                         {{carbon\carbon::parse($d->tgl_selesai)->translatedFormat('d F Y')}}</td>
                                     <td>{{$d->peserta->count()}} Orang</td>
-                                    <td>{{$d->status}}</td>
                                     <td>
-                                        @switch($d->status)
-                                        @case(1)
-                                        Sedang Berlangsung
-                                        @break
-                                        @case(2)
-                                        Sudah Lewat
-
-                                        @break
-                                        @default
-                                        Belum Dimulai
-                                        @endswitch
+                                        @if($d->status == 0)
+                                            <div class="badge badge-warning">belum berlangsung</div>
+                                        @elseif($d->status == 1)
+                                            <div class="badge badge-primary">sedang berlangsung</div>
+                                        @else
+                                            <div class="badge badge-success">sudah lewat</div>
+                                        @endif
                                     </td>
                                     <td>
                                         <form action="{{ route('userAdmin.penyuluhan.destroy',$d->id) }}" method="POST">
@@ -69,12 +64,14 @@
                                             <a class="btn btn-sm btn-info"
                                                 href="{{Route('userAdmin.penyuluhan.show',$d->id)}}"><i
                                                     class="fa fa-info-circle"></i>&nbsp;Show</a>
+                                            @if($d->status != 2)
                                             <a class="btn btn-sm btn-warning"
                                                 href="{{Route('userAdmin.penyuluhan.edit',$d->id)}}"><i
                                                     class="fa fa-edit"></i>&nbsp;Edit</a>
                                             <button class="btn btn-sm btn-danger " type="submit"><i class="fa fa-trash"
                                                     onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"></i>&nbsp;Hapus</button>
-                                        </form>
+                                            @endif
+                                            </form>
                                     </td>
                                 </tr>
                                 @endforeach

@@ -29,20 +29,22 @@ class MainController extends Controller
 
     public function penyuluh_beranda()
     { 
-        $penyuluhan = Penyuluhan::where('penyuluh_id', Auth::user()->penyuluh->id)->get();
         $now = Carbon::now();
+        $penyuluhan = Penyuluhan::latest()->get();
         $penyuluhan->map(function ($item) use ($now) {
 
-            if (Carbon::parse($item->tgl_mulai) >= $now) {
-                $item['stat'] = 0;
+            if ($now >= carbon::parse($item->tgl_mulai) && $now <= carbon::parse($item->tgl_selesai)) {
+                $item['status'] = 1;
+            } else if ($now > carbon::parse($item->tgl_selesai) && $now > carbon::parse($item->tgl_mulai)) {
+                $item['status'] = 2;
             } else {
-                $item['stat'] = 1;
+                $item['status'] = 0;
             }
+
             return $item;
         });
-        
-        $data = $penyuluhan->where('stat', 0);
-        
+
+        $data = $penyuluhan->where('status','!=', 2);
         return view('penyuluh.index',compact('data'));
     }
 
