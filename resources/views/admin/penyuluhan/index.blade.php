@@ -47,11 +47,11 @@
                                     <td>{{$d->peserta->count()}} Orang</td>
                                     <td>
                                         @if($d->status == 0)
-                                            <div class="badge badge-warning">belum berlangsung</div>
+                                            <div class="badge badge-warning">belum mulai</div>
                                         @elseif($d->status == 1)
                                             <div class="badge badge-primary">sedang berlangsung</div>
                                         @else
-                                            <div class="badge badge-success">sudah lewat</div>
+                                            <div class="badge badge-success">sudah selesai</div>
                                         @endif
                                     </td>
                                     <td>

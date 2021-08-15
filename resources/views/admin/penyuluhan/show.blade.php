@@ -82,11 +82,11 @@
                             <td width="2px">:</td>
                             <td>
                             @if($data->status == 0)
-                                <div class="badge badge-warning">belum berlangsung</div>
+                                <div class="badge badge-warning">belum mulai</div>
                             @elseif($data->status == 1)
                                 <div class="badge badge-primary">sedang berlangsung</div>
                             @else
-                                <div class="badge badge-success">sudah lewat</div>
+                                <div class="badge badge-success">sudah selesai</div>
                             @endif
                             </td>
                         </tr>
