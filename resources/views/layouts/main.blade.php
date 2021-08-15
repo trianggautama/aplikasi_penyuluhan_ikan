@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,8 +25,8 @@
         <div class="sidebar-brand-text mx-3">Dinas Perikanan</div>
       </a>
       <hr class="sidebar-divider my-0">
-     @if(Auth::user()->role == 1)
-     <li class="nav-item active">
+      @if(Auth::user()->role == 1)
+      <li class="nav-item active">
         <a class="nav-link" href="{{Route('userAdmin.beranda')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Beranda</span></a>
@@ -97,8 +98,8 @@
           </div>
         </div>
       </li>
-     @endif
-     @if(Auth::user()->role == 2)
+      @endif
+      @if(Auth::user()->role == 2)
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
         Penyuluh
@@ -112,7 +113,7 @@
         <a class="nav-link" href="{{Route('userPenyuluh.profil')}}">
           <i class="fas fa-fw fa-user"></i>
           <span>Profil</span></a>
-      </li> 
+      </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePage" aria-expanded="true"
           aria-controls="collapsePage">

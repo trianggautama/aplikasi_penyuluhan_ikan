@@ -25,6 +25,7 @@ class CreatePenyuluhansTable extends Migration
             $table->date('tgl_selesai');
             $table->string('tempat_pelatihan');
             $table->string('lampiran')->nullable();
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }
