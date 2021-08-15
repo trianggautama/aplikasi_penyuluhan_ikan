@@ -13,7 +13,8 @@
         <div class="col-md">
             <div class="card">
                 <div class="card-header text-right">
-                    <a href="{{Route('report.penyuluh')}}" class="btn btn-info" target="__blank"><i class="fa fa-print"></i> Cetak Data</a>
+                    <a href="{{Route('report.penyuluh')}}" class="btn btn-info" target="__blank"><i
+                            class="fa fa-print"></i> Cetak Data</a>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
                         id="#myBtn">
                         <i class="fa fa-plus"></i> Tambah Data
@@ -90,7 +91,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('userAdmin.penyuluh.store')}}" method="POST">
+                <form action="{{route('userAdmin.penyuluh.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="">NIP</label>

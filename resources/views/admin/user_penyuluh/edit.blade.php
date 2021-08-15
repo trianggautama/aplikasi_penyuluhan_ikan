@@ -15,7 +15,8 @@
                 <div class="card-header">
                     form edit
                 </div>
-                <form action="{{route('userAdmin.penyuluh.update',$user->id)}}" method="POST">
+                <form action="{{route('userAdmin.penyuluh.update',$user->id)}}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <div class="card-body">

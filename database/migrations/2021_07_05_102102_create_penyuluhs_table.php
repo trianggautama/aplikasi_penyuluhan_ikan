@@ -25,6 +25,7 @@ class CreatePenyuluhsTable extends Migration
             $table->string('alamat');
             $table->string('jk');
             $table->string('pendidikan_terakhir');
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }

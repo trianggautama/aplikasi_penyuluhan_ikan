@@ -47,6 +47,14 @@ class PenyuluhController extends Controller
         $user = User::create($userRequest);
 
         $penyuluhRequest = $request->except('password', 'username', 'nama', 'role', 'status');
+        if (isset($request->foto)) {
+            $file = $request->file('foto');
+
+            $file_name = time() . "_" . $file->getClientOriginalName();
+
+            $file->move('lampiran/foto-penyuluh', $file_name);
+            $penyuluhRequest['foto'] = $file_name;
+        }
 
         $user->penyuluh()->create($penyuluhRequest);
 
@@ -97,6 +105,14 @@ class PenyuluhController extends Controller
         $user->update($userRequest);
 
         $penyuluhRequest = $request->except('_method', '_token', 'password', 'username', 'nama', 'role', 'status');
+        if (isset($request->foto)) {
+            $file = $request->file('foto');
+
+            $file_name = time() . "_" . $file->getClientOriginalName();
+
+            $file->move('lampiran/foto-penyuluh', $file_name);
+            $penyuluhRequest['foto'] = $file_name;
+        }
 
         $user->penyuluh()->update($penyuluhRequest);
 
@@ -125,6 +141,6 @@ class PenyuluhController extends Controller
     public function filter()
     {
         $penyuluh = Penyuluh::latest()->get();
-        return view('admin.user_penyuluh.filter',compact('penyuluh'));
+        return view('admin.user_penyuluh.filter', compact('penyuluh'));
     }
 }
