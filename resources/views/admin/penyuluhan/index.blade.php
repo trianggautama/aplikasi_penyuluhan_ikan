@@ -30,6 +30,7 @@
                                     <th>Kelurahan</th>
                                     <th>Tanggal Kegiatan</th>
                                     <th>Jumlah Peserta</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -43,6 +44,7 @@
                                     <td>{{carbon\carbon::parse($d->tgl_mulai)->translatedFormat('d F Y')}} -
                                         {{carbon\carbon::parse($d->tgl_selesai)->translatedFormat('d F Y')}}</td>
                                     <td>{{$d->peserta->count()}} Orang</td>
+                                    <td>{{$d->status}}</td>
                                     <td>
                                         <form action="{{ route('userAdmin.penyuluhan.destroy',$d->id) }}" method="POST">
                                             @csrf

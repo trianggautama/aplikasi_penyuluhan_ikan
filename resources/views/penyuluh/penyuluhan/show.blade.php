@@ -91,10 +91,10 @@
                     <div class="row">
                         <div class="col-md">Peserta Penyuluhan</div>
                         <div class="col-md text-right">
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                            <!-- <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#exampleModal" id="#myBtn">
                                 <i class="fa fa-plus"></i> Tambah Data
-                            </button>
+                            </button> -->
                         </div>
                     </div>
                 </div>
