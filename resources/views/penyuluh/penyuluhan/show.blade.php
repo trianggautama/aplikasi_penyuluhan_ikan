@@ -78,7 +78,7 @@
                         <tr>
                             <td width="20%">Status Pelatihan</td>
                             <td width="2px">:</td>
-                            <td>
+                            <td> 
                                 @if($data->status == 0)
                                     <div class="badge badge-warning">belum berlangsung</div>
                                 @elseif($data->status == 1)
