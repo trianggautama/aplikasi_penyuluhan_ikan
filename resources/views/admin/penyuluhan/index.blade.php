@@ -13,12 +13,13 @@
         <div class="col-md">
             <div class="card">
                 <div class="card-header text-right">
-                    <a href="{{Route('report.penyuluhan')}}" class="btn btn-info" target="__blank"><i class="fa fa-print"></i> Cetak Data</a>
+                    <a href="{{Route('report.penyuluhan')}}" class="btn btn-info" target="__blank"><i
+                            class="fa fa-print"></i> Cetak Data</a>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
                         id="#myBtn">
                         <i class="fa fa-plus"></i> Tambah Data
                     </button>
-                </div> 
+                </div>
                 <div class="card-body">
                     <div class="table-responsive p-3">
                         <table class="table align-items-center table-flush" id="dataTable">
@@ -30,6 +31,7 @@
                                     <th>Kelurahan</th>
                                     <th>Tanggal Kegiatan</th>
                                     <th>Jumlah Peserta</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -43,6 +45,19 @@
                                     <td>{{carbon\carbon::parse($d->tgl_mulai)->translatedFormat('d F Y')}} -
                                         {{carbon\carbon::parse($d->tgl_selesai)->translatedFormat('d F Y')}}</td>
                                     <td>{{$d->peserta->count()}} Orang</td>
+                                    <td>
+                                        @switch($d->status)
+                                        @case(1)
+                                        Sedang Berlangsung
+                                        @break
+                                        @case(2)
+                                        Sudah Lewat
+
+                                        @break
+                                        @default
+                                        Belum Dimulai
+                                        @endswitch
+                                    </td>
                                     <td>
                                         <form action="{{ route('userAdmin.penyuluhan.destroy',$d->id) }}" method="POST">
                                             @csrf
@@ -132,6 +147,14 @@
                     <div class="form-group">
                         <label for="">Lampiran</label>
                         <input type="file" name="lampiran" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Status Penyuluhan</label>
+                        <select name="status" id="" class="form-control" required>
+                            <option value="0">Belum Mulai</option>
+                            <option value="1">Sedang Berlangsung</option>
+                            <option value="2">Sudah Lewat</option>
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">
