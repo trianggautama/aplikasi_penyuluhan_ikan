@@ -76,24 +76,24 @@
                             <input type="file" name="lampiran" class="form-control">
                             <small class="text-danger">isi jika ingin mengubah lampiran</small>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="">Status Penyuluhan</label>
                             <select name="status" id="" class="form-control" required>
                                 <option value="0" {{$data->status == 0 ? 'selected' : ''}}>Belum Mulai</option>
-                                <option value="1" {{$data->status == 1 ? 'selected' : ''}}>Sedang Berlangsung</option>
-                                <option value="2" {{$data->status == 2 ? 'selected' : ''}}>Sudah Lewat</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="{{Route('userAdmin.penyuluhan.index')}}" class="btn btn-outline-primary"
-                            data-dismiss="modal">Batal</a>
-                        <button type="submit" class="btn btn-primary">Simpan Data</button>
-                    </div>
-                </form>
+                        <option value="1" {{$data->status == 1 ? 'selected' : ''}}>Sedang Berlangsung</option>
+                        <option value="2" {{$data->status == 2 ? 'selected' : ''}}>Sudah Lewat</option>
+                        </select>
+                    </div> --}}
             </div>
+            <div class="modal-footer">
+                <a href="{{Route('userAdmin.penyuluhan.index')}}" class="btn btn-outline-primary"
+                    data-dismiss="modal">Batal</a>
+                <button type="submit" class="btn btn-primary">Simpan Data</button>
+            </div>
+            </form>
         </div>
     </div>
+</div>
 </div>
 @endsection
 @section('script')

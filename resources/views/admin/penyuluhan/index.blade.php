@@ -148,14 +148,14 @@
                         <label for="">Lampiran</label>
                         <input type="file" name="lampiran" class="form-control" required>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="">Status Penyuluhan</label>
                         <select name="status" id="" class="form-control" required>
                             <option value="0">Belum Mulai</option>
                             <option value="1">Sedang Berlangsung</option>
                             <option value="2">Sudah Lewat</option>
                         </select>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Batal</button>

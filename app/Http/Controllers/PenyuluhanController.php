@@ -28,6 +28,27 @@ class PenyuluhanController extends Controller
         $penyuluh = $this->penyuluh;
         $data = Penyuluhan::all();
         $now = Carbon::now();
+        // if (carbon::parse($data->tgl_mulai >= $now)) {
+        //     dd('mulai');
+        // } else if (carbon::parse($data->tgl_selesai) > $now) {
+        //     dd('lewat');
+
+        // } else {
+        //     dd('kurang');
+        // }
+
+        $data->map(function ($item) use ($now) {
+
+            if ($now >= carbon::parse($item->tgl_mulai) && $now <= carbon::parse($item->tgl_selesai)) {
+                $item['status'] = 1;
+            } else if ($now > carbon::parse($item->tgl_selesai) && $now > carbon::parse($item->tgl_mulai)) {
+                $item['status'] = 2;
+            } else {
+                $item['status'] = 0;
+            }
+
+            return $item;
+        });
         return view('admin.penyuluhan.index', compact('kelurahan', 'penyuluh', 'data'));
     }
 
