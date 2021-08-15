@@ -12,7 +12,7 @@
         <div class="col-md">
             <div class="card">
                 <div class="card-header">
-                    form Filter
+                    Form Filter
                 </div>
                 <form action="{{Route('report.penyuluhan_sk.filter')}}" enctype="multipart/form-data" method="GET" target="__blank">
                     <div class="card-body">
