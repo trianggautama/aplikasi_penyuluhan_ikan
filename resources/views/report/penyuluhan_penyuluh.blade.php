@@ -88,7 +88,7 @@
     <div class="container">
     <hr style="margin-top:1px;">
         <div class="isi">
-            <h2 style="text-align:center;">DATA PENYULUH</h2>
+            <h2 style="text-align:center; text-transform:uppercase;">DATA KEGIATAN PENYULUHAN {{Auth::user()->nama}}</h2>
             <br>
             <table class="table align-items-center table-flush" id="dataTable">
                             <thead class="thead-light">
@@ -116,7 +116,7 @@
                 <br>
                 <br>
                 <div class="ttd">
-                <p style="margin:0px"> Banjarbaru,</p>
+                <p style="margin:0px"> Amuntai,</p>
                 <h6 style="margin:0px">Mengetahui</h6>
                 <h5 style="margin:0px">Kepala Dinas Perikanan </h5>
                 <br>

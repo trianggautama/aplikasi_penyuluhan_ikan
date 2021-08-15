@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +16,6 @@
 
 <body id="page-top">
   <div id="wrapper">
-    <!-- Sidebar -->
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
@@ -74,8 +72,28 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Kegiatan Penyuluhan</h6>
             <a class="collapse-item" href="{{Route('userAdmin.objekPenilaian.index')}}">Objek Penilaian Peserta</a>
-            <a class="collapse-item" href="{{Route('userAdmin.penyuluhan.index')}}">Agenda</a>
+            <a class="collapse-item" href="{{Route('userAdmin.penyuluhan.index')}}">Agenda Penyuluhan</a>
             <a class="collapse-item" href="{{Route('userAdmin.peserta.index')}}">Peserta</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#report_menu" aria-expanded="true"
+          aria-controls="collapsePage">
+          <i class="fas fa-fw fa-columns"></i>
+          <span>Report Data</span>
+        </a>
+        <div id="report_menu" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{{Route('report.penyuluh')}}" target="__blank">Penyuluh Keseluruhan</a>
+            <a class="collapse-item" href="{{Route('userAdmin.penyuluh.filter')}}">Biodata Penyuluh</a>
+            <a class="collapse-item" href="{{Route('report.penyuluhan')}}" target="__blank">Kegiatan Penyuluhan</a>
+            <a class="collapse-item" href="{{Route('userAdmin.penyuluhan.filter_detail')}}">Detail Penyuluhan</a>
+            <a class="collapse-item" href="{{Route('userAdmin.penyuluhan.filter_sk')}}">SK Penyuluhan</a>
+            <a class="collapse-item" href="{{Route('report.peserta')}}" target="__blank">Peserta Keseluruhan</a>
+            <a class="collapse-item" href="{{Route('userAdmin.peserta.filter')}}">Peserta Filter Kegiatan</a>
+            <a class="collapse-item" href="{{Route('userAdmin.peserta.filter_kartu')}}">Kartu Peserta</a>
+            <a class="collapse-item" href="{{Route('userAdmin.peserta.filter_penilaian')}}">Penilaian Peserta</a>
           </div>
         </div>
       </li>
@@ -119,7 +137,7 @@
             <i class="fa fa-bars"></i>
           </button>
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown no-arrow mx-1">
+            <!-- <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
@@ -165,7 +183,7 @@
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
               </div>
-            </li>
+            </li> -->
             <div class="topbar-divider d-none d-sm-block"></div>
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
@@ -192,19 +210,19 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabelLogout">Ohh No!</h5>
+                <h5 class="modal-title" id="exampleModalLabelLogout">Peringatan...!</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <form id="frm-logout" action="{{ route('auth.logout') }}" method="POST">
                 <div class="modal-body">
-                  <p>Are you sure you want to logout?</p>
+                  <p>Apa anda yakin ingin keluar aplikasi?</p>
                   {{ csrf_field() }}
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
-                  <button type="submit" class="btn btn-primary">Logout</button>
+                  <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Batal</button>
+                  <button type="submit" class="btn btn-primary">Keluar</button>
                 </div>
               </form>
             </div>

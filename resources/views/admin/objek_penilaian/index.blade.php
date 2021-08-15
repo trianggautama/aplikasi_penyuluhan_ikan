@@ -13,8 +13,8 @@
         <div class="col-md">
             <div class="card">
                 <div class="card-header text-right">
-                    <a href="" class="btn btn-sm btn-primary"><i class="fa fa-print"></i> Cetak Form Penilaian
-                        Manual</a>
+                    <!-- <a href="" class="btn btn-sm btn-primary"><i class="fa fa-print"></i> Cetak Form Penilaian
+                        Manual</a> -->
                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal"
                         id="#myBtn">
                         <i class="fa fa-plus"></i> Tambah Data

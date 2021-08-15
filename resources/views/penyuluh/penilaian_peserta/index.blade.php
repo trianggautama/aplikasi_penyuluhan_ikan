@@ -13,7 +13,7 @@
         <div class="col-md">
             <div class="card">
                 <div class="card-header text-right">
-                    <a href="{{Route('report.penilaian_peserta',$peserta->id)}}" class="btn btn-info"><i class="fa fa-print"></i> Cetak Form Penilaian</a>
+                    <a href="{{Route('report.penilaian_peserta',$peserta->id)}}" class="btn btn-info" target="__blank"><i class="fa fa-print"></i> Cetak Form Penilaian</a>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
                         id="#myBtn">
                         <i class="fa fa-plus"></i> Tambah Penilaian

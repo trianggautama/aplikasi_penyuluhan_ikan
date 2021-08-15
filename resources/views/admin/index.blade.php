@@ -104,7 +104,7 @@
             <div class="col-lg-12 text-center">
               <div class="card">
                 <div class="card-body">
-                  <h5>Selamat Datang (Nama Admin)</h5>
+                  <h5>Selamat Datang ( {{Auth::user()->nama}})</h5>
                   <p>Di Aplikasi  Penyuluhan Periakanan Dinas Perikanan dan Kelautan Kabupaten Hulu Sungai Utara</p>
                 </div>
               </div>

@@ -9,6 +9,7 @@ use App\Models\Penyuluh;
 use App\Models\Penyuluhan;
 use App\Models\Peserta;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -27,9 +28,22 @@ class MainController extends Controller
     }
 
     public function penyuluh_beranda()
-    {
+    { 
+        $penyuluhan = Penyuluhan::where('penyuluh_id', Auth::user()->penyuluh->id)->get();
+        $now = Carbon::now();
+        $penyuluhan->map(function ($item) use ($now) {
 
-        return view('penyuluh.index');
+            if (Carbon::parse($item->tgl_mulai) >= $now) {
+                $item['stat'] = 0;
+            } else {
+                $item['stat'] = 1;
+            }
+            return $item;
+        });
+        
+        $data = $penyuluhan->where('stat', 0);
+        
+        return view('penyuluh.index',compact('data'));
     }
 
     public function penyuluh_profil()

@@ -153,7 +153,7 @@
                 <br>
                 <br>
                 <div class="ttd">
-                <p style="margin:0px"> Banjarbaru,</p>
+                <p style="margin:0px"> Amuntai,</p>
                 <h6 style="margin:0px">Mengetahui</h6>
                 <h5 style="margin:0px">Kepala Dinas Perikanan</h5>
                 <br>

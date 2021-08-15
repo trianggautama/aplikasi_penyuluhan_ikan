@@ -18,7 +18,7 @@
                     @else
                         <img src="{{asset('user.jpg')}}" alt="" width="100%">
                     @endif
-                    <a href="" class="btn btn-primary btn-block mt-2"><i class="fa fa-prin"></i>Cetak kartu peserta</a>
+                    <a href="{{Route('report.kartu_peserta',$data->id)}}" class="btn btn-primary btn-block mt-2" target="__blank"><i class="fa fa-prin"></i>Cetak kartu peserta</a>
                 </div>
             </div>
         </div>

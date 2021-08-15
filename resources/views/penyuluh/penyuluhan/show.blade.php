@@ -14,12 +14,17 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md">
+                        <div class="col-md-2">
                             Detail Penyuluhan
                         </div>
                         <div class="col-md text-right">
-                            <a href="{{Route('report.detail_penyuluhan',$data->id)}}" class="btn btn-sm btn-primary" target="__blank"><i class="fa fa-print"></i> Detail Penyuluhan</a>
-                            <a href="{{Route('userAdmin.penyuluhan.index')}}" class="btn btn-sm btn-secondary"><i class="fa fa-arrow-left"></i> kembali</a>
+                            <form action="{{Route('report.peserta.filter')}}" action="GET">
+                                <input type="hidden" name="punyuluhan_id" value="{{$data->id}}">
+                                <a href="{{Route('report.detail_penyuluhan',$data->id)}}" class="btn btn-sm btn-primary" target="__blank"><i class="fa fa-print"></i> Detail Penyuluhan</a>
+                                <button type="submit" class="btn btn-sm btn-primary" target="__blank"><i class="fa fa-users"></i> Cetak Peserta Kegiatan Penyuluahan</button>
+                                <a href="{{Route('userPenyuluh.penyuluhan_penyuluh.index')}}" class="btn btn-sm btn-secondary"><i class="fa fa-arrow-left"></i> kembali</a>
+                            </form>
+                            
                         </div>
                     </div>
                 </div>
@@ -84,7 +89,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md">Peserta Pelatihan</div>
+                        <div class="col-md">Peserta Penyuluhan</div>
                         <div class="col-md text-right">
                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#exampleModal" id="#myBtn">
@@ -103,7 +108,7 @@
                                 <th>Nama</th>
                                 <th>Tempat,tanggal lahir</th>
                                 <th>Jenis kelamin</th>
-                                <th>Aksi</th>
+                                <th>Aksi </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -117,24 +122,24 @@
                                     {{carbon\carbon::parse($d->tanggal_lahir)->translatedFormat('d F Y')}}</td>
                                 <td>{{$d->jenis_kelamin}}</td>
                                 <td>
-                                    <form action="{{ route('userPenyuluh.peserta_penyuluh.destroy',$d->id) }}"
+                                    <!-- <form action="{{ route('userPenyuluh.peserta_penyuluh.destroy',$d->id) }}"
                                         method="POST">
                                         @csrf
-                                        @method('DELETE')
-                                        <a class="btn btn-sm btn-success"
+                                        @method('DELETE') -->
+                                        <a class="btn btn-sm btn-success @if($data->stat == 0) disabled @endif"
                                             href="{{Route('userPenyuluh.penilaian_peserta.index',$d->id)}}"><i
                                                 class="fa fa-file"></i>&nbsp;Penilaian</a>
                                         <a class="btn btn-sm btn-info"
                                             href="{{Route('userPenyuluh.peserta_penyuluh.show',$d->id)}}"><i
                                                 class="fa fa-info-circle"></i>&nbsp;Show</a>
-                                        <a class="btn btn-sm btn-warning m-1"
+                                        <!-- <a class="btn btn-sm btn-warning m-1"
                                             href="{{Route('userPenyuluh.peserta_penyuluh.edit',$d->id)}}"><i
                                                 class="fa fa-edit"></i>&nbsp;Edit</a>
                                         <button class="btn btn-sm btn-danger " type="submit"><i class="fa fa-trash"
-                                                onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"></i>&nbsp;Hapus</button>
-                                    </form>
+                                                onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"></i>&nbsp;Hapus</button> -->
+                                    <!-- </form> -->
                                 </td>
-                            </tr>
+                            </tr> 
                             @endforeach
                         </tbody>
                     </table>

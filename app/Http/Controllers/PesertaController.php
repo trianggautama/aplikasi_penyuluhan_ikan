@@ -80,8 +80,9 @@ class PesertaController extends Controller
      */
     public function edit($id)
     {
-        $data = Peserta::findOrFail($id);
+        $data       = Peserta::findOrFail($id);
         $penyuluhan = $this->penyuluhan;
+
         return view('admin.peserta.edit', compact('data', 'penyuluhan'));
     }
 
@@ -108,7 +109,7 @@ class PesertaController extends Controller
 
         $data->update();
 
-        return redirect()->route('userAdmin.peserta.index');
+        return redirect()->route('userAdmin.penyuluhan.show', $request->penyuluhan_id);
 
     }
 
@@ -135,5 +136,23 @@ class PesertaController extends Controller
 
         }
 
+    }
+
+    public function filter()
+    {
+        $penyuluhan = Penyuluhan::latest()->get();
+        return view('admin.peserta.filter',compact('penyuluhan'));
+    }
+
+    public function filter_kartu()
+    {
+        $peserta = Peserta::latest()->get();
+        return view('admin.peserta.filter_kartu',compact('peserta'));
+    }
+
+    public function filter_penilaian()
+    {
+        $peserta = Peserta::latest()->get();
+        return view('admin.peserta.filter_penilaian',compact('peserta'));
     }
 }
