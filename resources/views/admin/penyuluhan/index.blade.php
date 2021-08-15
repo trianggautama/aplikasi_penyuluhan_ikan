@@ -45,6 +45,7 @@
                                     <td>{{carbon\carbon::parse($d->tgl_mulai)->translatedFormat('d F Y')}} -
                                         {{carbon\carbon::parse($d->tgl_selesai)->translatedFormat('d F Y')}}</td>
                                     <td>{{$d->peserta->count()}} Orang</td>
+                                    <td>{{$d->status}}</td>
                                     <td>
                                         @switch($d->status)
                                         @case(1)
