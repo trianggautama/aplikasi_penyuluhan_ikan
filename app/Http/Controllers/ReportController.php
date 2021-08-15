@@ -176,13 +176,13 @@ class ReportController extends Controller
     public function daftar_hadir($id)
     {
         $data               = Penyuluhan::findOrFail($id);
-        $tgl_mulai          = Carbon::parse($data->tgl_mulai);
+        $tgl_mulai          = Carbon::parse($data->tgl_mulai); 
         $data->total_hari   = $tgl_mulai->diffInDays(Carbon::parse($data->tgl_selesai));
 
         $pdf    = PDF::loadView('report.daftar_isi', ['data'=>$data]);
         $pdf->setPaper('a4', 'prtrait'); 
         
-        return $pdf->stream('Laporan Daftar Isi.pdf');
+        return $pdf->stream('Laporan Daftar Kehadiran.pdf');
     }
 
     public function penyuluhan_kehadiran_filter(Request $req)
@@ -194,7 +194,7 @@ class ReportController extends Controller
         $pdf    = PDF::loadView('report.daftar_isi', ['data'=>$data]);
         $pdf->setPaper('a4', 'prtrait'); 
         
-        return $pdf->stream('Laporan Daftar Isi.pdf');
+        return $pdf->stream('Laporan Daftar Kehadiran.pdf');
     }
 }
  
