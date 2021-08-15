@@ -171,6 +171,10 @@
                         <label for="">Password</label>
                         <input type="password" name="password" class="form-control" required>
                     </div>
+                    <div class="form-group">
+                        <label for="">Foto Penyuluh</label>
+                        <input type="file" name="foto" class="form-control" required>
+                    </div>
                     <input type="hidden" name="role" value="2">
             </div>
             <div class="modal-footer">

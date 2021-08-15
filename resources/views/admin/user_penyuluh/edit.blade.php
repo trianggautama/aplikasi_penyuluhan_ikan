@@ -107,6 +107,11 @@
                             <input type="password" name="password" class="form-control"
                                 placeholder="Isi jika ingin mengubah password">
                         </div>
+                        <div class="form-group">
+                            <label for="">Foto Penyuluh</label>
+                            <input type="file" name="foto" class="form-control" required>
+                            <small class="text-danger">Isi jika ingin mengubah foto</small>
+                        </div>
                     </div>
                     <div class="card-footer text-right">
                         <a href="{{Route('userAdmin.penyuluh.index')}}" class="btn btn-outline-primary"
