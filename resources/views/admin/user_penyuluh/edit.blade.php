@@ -86,10 +86,6 @@
                             <label for="">Pendidikan Terakhir </label>
                             <select name="pendidikan_terakhir" id="" class="form-control" required>
                                 <option value="">- pilih pendidikan terakhir -</option>
-                                <option value="SD" {{$user->penyuluh->pendidikan_terakhir == 'SD' ? 'selected' :''}}>SD
-                                </option>
-                                <option value="SMP" {{$user->penyuluh->pendidikan_terakhir == 'SMP' ? 'selected' :''}}>
-                                    SMP</option>
                                 <option value="SMA" {{$user->penyuluh->pendidikan_terakhir == 'SMA' ? 'selected' :''}}>
                                     SMA</option>
                                 <option value="S-1" {{$user->penyuluh->pendidikan_terakhir == 'S-1' ? 'selected' :''}}>

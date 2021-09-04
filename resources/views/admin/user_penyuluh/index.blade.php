@@ -153,8 +153,6 @@
                         <label for="">Pendidikan Terakhir </label>
                         <select name="pendidikan_terakhir" id="" class="form-control" required>
                             <option value="">- pilih pendidikan terakhir -</option>
-                            <option value="SD">SD</option>
-                            <option value="SMP">SMP</option>
                             <option value="SMA">SMA</option>
                             <option value="S-1">S-1</option>
                             <option value="S-2">S-2</option>
