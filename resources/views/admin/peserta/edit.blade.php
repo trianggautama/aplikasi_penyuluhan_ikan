@@ -78,9 +78,20 @@
                             <input type="file" name="foto" class="form-control">
                             <small class="text-danger">isi jika ingin merubah foto</small>
                         </div>
+                        <div class="form-group">
+                            <label for="">Username</label>
+                            <input type="text" name="username" class="form-control" value="{{$data->user->username}}"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Password</label>
+                            <input type="password" name="password" class="form-control">
+                            <small class="text-danger">isi jika ingin merubah password</small>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <a href="{{Route('userAdmin.peserta.index')}}" class="btn btn-outline-primary" data-dismiss="modal">Batal</a>
+                        <a href="{{Route('userAdmin.peserta.index')}}" class="btn btn-outline-primary"
+                            data-dismiss="modal">Batal</a>
                         <button type="submit" class="btn btn-primary">Simpan Data</button>
                     </div>
                 </form>

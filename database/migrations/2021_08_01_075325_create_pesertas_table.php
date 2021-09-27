@@ -17,6 +17,8 @@ class CreatePesertasTable extends Migration
             $table->id();
             $table->unsignedBigInteger('penyuluhan_id');
             $table->foreign('penyuluhan_id')->references('id')->on('penyuluhans')->onDelete('restrict');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('nik');
             $table->string('nama');
             $table->string('tempat_lahir');

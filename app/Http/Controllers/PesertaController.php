@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Penyuluhan;
 use App\Models\Peserta;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PesertaController extends Controller
 {
@@ -44,7 +46,16 @@ class PesertaController extends Controller
      */
     public function store(Request $request)
     {
-        $data = Peserta::create($request->all());
+        $user = new User;
+        $user->nama = $request->nama;
+        $user->username = $request->username;
+        $user->status = 1;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        $req = $request->all();
+        $req['user_id'] = $user->id;
+        $data = Peserta::create($req);
 
         if (isset($request->foto)) {
             $file = $request->file('foto');
@@ -81,7 +92,7 @@ class PesertaController extends Controller
      */
     public function edit($id)
     {
-        $data       = Peserta::findOrFail($id);
+        $data = Peserta::findOrFail($id);
         $penyuluhan = $this->penyuluhan;
 
         return view('admin.peserta.edit', compact('data', 'penyuluhan'));
@@ -92,11 +103,21 @@ class PesertaController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response 
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $data = Peserta::findOrFail($id);
+
+        $user = User::findOrFail($data->user_id);
+        $user->nama = $request->nama;
+        $user->username = $request->username;
+        if ($request->password) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->update();
+
         $data->update($request->all());
 
         if (isset($request->foto)) {
@@ -142,20 +163,20 @@ class PesertaController extends Controller
     public function filter()
     {
         $penyuluhan = Penyuluhan::latest()->get();
-        return view('admin.peserta.filter',compact('penyuluhan'));
+        return view('admin.peserta.filter', compact('penyuluhan'));
     }
 
     public function filter_kartu()
     {
         $peserta = Peserta::latest()->get();
-        return view('admin.peserta.filter_kartu',compact('peserta'));
+        return view('admin.peserta.filter_kartu', compact('peserta'));
     }
 
     public function filter_penilaian()
     {
         $now = Carbon::now();
-        $penyuluhan = Penyuluhan::where('tgl_selesai','<',$now)->latest()->get();
-        return view('admin.peserta.filter_penilaian',compact('penyuluhan'));
+        $penyuluhan = Penyuluhan::where('tgl_selesai', '<', $now)->latest()->get();
+        return view('admin.peserta.filter_penilaian', compact('penyuluhan'));
     }
 
     public function api($id)

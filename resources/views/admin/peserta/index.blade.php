@@ -13,8 +13,10 @@
         <div class="col-md">
             <div class="card">
                 <div class="card-header text-right">
-                    <a href="{{Route('userAdmin.peserta.filter')}}" class="btn btn-primary"><i class="fa fa-filter"></i> filter Cetak</a>
-                    <a href="{{Route('report.peserta')}}" class="btn btn-primary" target="__blank"><i class="fa fa-print"></i> Cetak Data</a>
+                    <a href="{{Route('userAdmin.peserta.filter')}}" class="btn btn-primary"><i class="fa fa-filter"></i>
+                        filter Cetak</a>
+                    <a href="{{Route('report.peserta')}}" class="btn btn-primary" target="__blank"><i
+                            class="fa fa-print"></i> Cetak Data</a>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
                         id="#myBtn">
                         <i class="fa fa-plus"></i> Tambah Data
@@ -139,11 +141,11 @@
                     <hr>
                     <div class="form-group">
                         <label for="">Username</label>
-                        <input type="text" name="foto" class="form-control" required>
+                        <input type="text" name="username" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="">Password</label>
-                        <input type="password" name="foto" class="form-control" required>
+                        <input type="password" name="password" class="form-control" required>
                     </div>
                 </div>
                 <div class="modal-footer">

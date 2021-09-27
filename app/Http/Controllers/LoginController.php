@@ -30,6 +30,9 @@ class LoginController extends Controller
                 case 2:
                     return redirect()->route('userPenyuluh.beranda');
                     break;
+                default:
+                    return redirect()->route('userPeserta.beranda');
+
             }
 
         }
