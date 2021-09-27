@@ -15,6 +15,9 @@
                 <div class="card-body">
                     <img src="{{asset('user.jpg')}}" alt="" width="100%">
                 </div>
+                <div class="card-footer">
+                    <a href="" class="btn btn-sm btn-block btn-primary"><i class="fa fa-print"></i> Cetak Kartu Peserta</a>
+                </div>
             </div>
         </div>
         <div class="col-md">
