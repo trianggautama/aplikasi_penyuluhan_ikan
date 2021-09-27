@@ -136,6 +136,15 @@
                         <label for="">Foto</label>
                         <input type="file" name="foto" class="form-control" required>
                     </div>
+                    <hr>
+                    <div class="form-group">
+                        <label for="">Username</label>
+                        <input type="text" name="foto" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Password</label>
+                        <input type="password" name="foto" class="form-control" required>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Batal</button>

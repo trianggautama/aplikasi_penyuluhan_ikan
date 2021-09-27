@@ -129,6 +129,17 @@
         </div>
       </li>
       @endif
+      @if(Auth::user()->role == 3)
+      <hr class="sidebar-divider">
+      <div class="sidebar-heading">
+        Penyuluh
+      </div>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{Route('userPeserta.beranda')}}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Beranda</span></a>
+      </li>
+      @endif
     </ul>
     <!-- Sidebar -->
     <div id="content-wrapper" class="d-flex flex-column">

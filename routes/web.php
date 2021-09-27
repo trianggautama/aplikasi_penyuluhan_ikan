@@ -55,6 +55,12 @@ Route::prefix('/user-penyuluh')->name('userPenyuluh.')->group(function () {
     });
 });
 
+Route::prefix('/user-peserta')->name('userPeserta.')->group(function () {
+    Route::get('/beranda', [MainController::class, 'peserta_beranda'])->name('beranda');
+    Route::get('/profil', [MainController::class, 'peserta_profil'])->name('profil');
+    Route::put('/profil/update/{id}', [MainController::class, 'peserta_profil_update'])->name('profil.update');
+});
+
 Route::prefix('/report')->name('report.')->group(function () {
     Route::get('/penyuluh', [ReportController::class, 'penyuluh'])->name('penyuluh');
     Route::get('/penyuluh_detail/{id}', [ReportController::class, 'penyuluh_detail'])->name('penyuluh_detail'); 

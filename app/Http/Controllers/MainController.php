@@ -72,4 +72,10 @@ class MainController extends Controller
 
         return redirect()->back()->withSuccess('Profil berhasil di update');
     }
+
+    public function peserta_beranda()
+    {
+       
+        return view('peserta.index');
+    }
 }
