@@ -8,7 +8,6 @@
             <li class="breadcrumb-item active" aria-current="page">Profil</li>
         </ol>
     </div>
-
     <div class="row mb-3">
         <div class="col-md-3">
             <div class="card">

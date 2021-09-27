@@ -59,6 +59,9 @@ Route::prefix('/user-peserta')->name('userPeserta.')->group(function () {
     Route::get('/beranda', [MainController::class, 'peserta_beranda'])->name('beranda');
     Route::get('/profil', [MainController::class, 'peserta_profil'])->name('profil');
     Route::put('/profil/update/{id}', [MainController::class, 'peserta_profil_update'])->name('profil.update');
+    Route::get('/data_penyuluhan', [PenyuluhanController::class, 'peserta_index'])->name('data_penyuluhan');
+    Route::get('/penilaian_peserta', [PenilaianPesertaController::class, 'peserta_index'])->name('penilaian_peserta');
+
 });
 
 Route::prefix('/report')->name('report.')->group(function () {

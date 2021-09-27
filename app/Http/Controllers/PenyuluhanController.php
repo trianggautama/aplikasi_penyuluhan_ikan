@@ -8,6 +8,7 @@ use App\Models\Penyuluhan;
 use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PenyuluhanController extends Controller
 {
@@ -42,6 +43,13 @@ class PenyuluhanController extends Controller
             return $item;
         });
         return view('admin.penyuluhan.index', compact('kelurahan', 'penyuluh', 'data'));
+    }
+
+    public function peserta_index()
+    {
+        $user       = Auth::user();
+        $penyuluhan = $user->peserta->penyuluhan;
+        return view('peserta.penyuluhan.index',compact('penyuluhan'));
     }
 
     /**

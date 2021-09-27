@@ -6,6 +6,7 @@ use App\Models\Penyuluhan;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Peserta extends Model
 {
@@ -24,5 +25,11 @@ class Peserta extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+
+    public function penilaian(): HasMany
+    {
+        return $this->hasMany(PenilaianPeserta::class);
     }
 }

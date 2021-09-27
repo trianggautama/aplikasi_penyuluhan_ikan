@@ -129,7 +129,7 @@
         </div>
       </li>
       @endif
-      @if(Auth::user()->role == 3)
+      @if(Auth::user()->role == 0)
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
         Penyuluh
@@ -138,6 +138,16 @@
         <a class="nav-link" href="{{Route('userPeserta.beranda')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Beranda</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{Route('userPeserta.data_penyuluhan')}}">
+          <i class="fas fa-fw fa-file"></i>
+          <span>Data Penyuluhan</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{Route('userPeserta.penilaian_peserta')}}">
+          <i class="fas fa-fw fa-file"></i>
+          <span>Penilaian Peserta</span></a>
       </li>
       @endif
     </ul>

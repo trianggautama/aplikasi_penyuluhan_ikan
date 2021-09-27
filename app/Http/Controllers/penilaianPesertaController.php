@@ -7,6 +7,7 @@ use App\Models\PenilaianPeserta;
 use App\Models\Peserta;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class penilaianPesertaController extends Controller
 {
@@ -21,6 +22,15 @@ class penilaianPesertaController extends Controller
         $obj = ObjekPenilaian::all();
         $peserta = Peserta::findOrFail($id);
         return view('penyuluh.penilaian_peserta.index', compact('data', 'obj', 'peserta'));
+    }
+
+    public function peserta_index()
+    {
+
+        $user       = Auth::user();
+        $penilaian = $user->peserta->penilaian;
+        return view('peserta.penilaian.index',compact('penilaian'));
+ 
     }
 
     /**
