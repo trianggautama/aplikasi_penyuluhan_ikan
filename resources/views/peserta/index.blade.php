@@ -12,10 +12,13 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
+                @if(Auth::user()->peserta->foto)
+                    <img src="{{asset('lampiran/foto-peserta/'. Auth::user()->peserta->foto)}}" alt="" width="100%">
+                @else
                     <img src="{{asset('user.jpg')}}" alt="" width="100%">
-                </div>
+                @endif
                 <div class="card-footer">
-                    <a href="" class="btn btn-sm btn-block btn-primary"><i class="fa fa-print"></i> Cetak Kartu Peserta</a>
+                <a href="{{Route('report.kartu_peserta',Auth::user()->peserta->id)}}" class="btn btn-primary btn-block mt-2" target="_blank"><i class="fa fa-prin"></i>Cetak kartu peserta</a>                </div>
                 </div>
             </div>
         </div>
@@ -27,42 +30,37 @@
                             Detail Biodata
                         </div>
                         <div class="col-md text-right">
-                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                            <!-- <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                 data-target="#exampleModal" id="#myBtn">
                                 <i class="fa fa-edit"></i> Edit Data
-                            </button>
-                            <a href="{{Route('userAdmin.peserta.index')}}" class="btn btn-sm btn-secondary"><i
-                                    class="fa fa-arrow-left"></i> kembali</a>
+                            </button> -->
+                            <!-- <a href="{{Route('userAdmin.peserta.index')}}" class="btn btn-sm btn-secondary"><i
+                                    class="fa fa-arrow-left"></i> kembali</a> -->
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <table class="table table-striped">
                         <tr>
-                            <td width="24%">Nama </td>
+                            <td width="24%">NIK </td>
                             <td width="2%">:</td>
-                            <td>-</td>
+                            <td>{{Auth::user()->peserta->nik}}</td>
                         </tr>
                         <tr>
-                            <td width="24%">Jabatan</td>
+                            <td width="24%">Nama </td>
                             <td width="2%">:</td>
-                            <td>-</td>
+                            <td>{{Auth::user()->nama}}</td>
                         </tr>
                         <tr>
                             <td width="24%">Tempat, tanggal lahir</td>
                             <td width="2%">:</td>
-                            <td>-
-                            </td>
+                            <td>{{Auth::user()->peserta->tempat_lahir}},
+                                {{carbon\carbon::parse(Auth::user()->peserta->tanggal_lahir)->translatedFormat('d F Y')}}</td>
                         </tr>
                         <tr>
                             <td width="24%">Jenis kelamin</td>
                             <td width="2%">:</td>
-                            <td>-</td>
-                        </tr>
-                        <tr>
-                            <td width="24%">Alamat</td>
-                            <td width="2%">:</td>
-                            <td>-</td>
+                            <td>{{Auth::user()->peserta->jenis_kelamin}}</td>
                         </tr>
                     </table>
                 </div>
